@@ -1,12 +1,14 @@
 package org.example;
 
+import org.example.coding.array.DuplicateNumber;
 import org.example.coding.array.Occurrence;
+
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Occurrence object=new Occurrence();
-        int arr[]={1, 1, 2, 2, 2, 2, 3};
-        int x=2;
-        System.out.println(object.numberOfOccurence(arr,2));
+        DuplicateNumber duplicateNumber=new DuplicateNumber();
+        int arr[]={1,2,3,4};
+        duplicateNumber.findDuplicate(arr);
     }
 }
