@@ -1,5 +1,7 @@
 package org.example.coding.array;
 
+import java.util.Arrays;
+
 public class ArrayProblem {
 
     /**
@@ -83,5 +85,37 @@ public class ArrayProblem {
             j++;
         }
         return i;
+    }
+
+    /**
+     *
+     * Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+     *
+     * https://leetcode.com/problems/rotate-array/
+     *
+     * */
+    public void rotate(int[] nums, int k) {
+        int index=nums.length-k;
+        nums=reverseArray(nums,0,index-1);
+        nums=reverseArray(nums,index,nums.length-1);
+        nums=reverseArray(nums,0,nums.length-1);
+        System.out.println(Arrays.toString(nums));
+    }
+
+    /**
+     * reverse array
+     *
+     *
+     *
+     * */
+    public int [] reverseArray(int nums[],int startIndex,int endIndex){
+        while(startIndex<endIndex){
+            int temp=nums[startIndex];
+            nums[startIndex]=nums[endIndex];
+            nums[endIndex]=temp;
+            startIndex++;
+            endIndex--;
+        }
+        return nums;
     }
 }
