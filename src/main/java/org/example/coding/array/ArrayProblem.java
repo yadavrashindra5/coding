@@ -20,8 +20,7 @@ public class ArrayProblem {
 
     /**
      * second largest element
-     *
-     * */
+     */
     public int secondLargest(int size, int[] arrayElement) {
         int largElet = Integer.MIN_VALUE;
         int secLargest = Integer.MIN_VALUE;
@@ -39,8 +38,7 @@ public class ArrayProblem {
 
     /**
      * second smallest element
-     *
-     * */
+     */
     public int secSmallest(int size, int[] arrayElement) {
         int largElet = Integer.MAX_VALUE;
         int secLargest = Integer.MAX_VALUE;
@@ -66,5 +64,24 @@ public class ArrayProblem {
         array[0] = secondL;
         array[1] = secondS;
         return array;
+    }
+
+    /**
+     *Remove Duplicates from Sorted Array
+     *
+     * https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+     *
+     * */
+
+    public int removeDuplicates(int nums[]) {
+        int i = 0, j = 0;
+        int lengthOfNums = nums.length;
+        while (j < lengthOfNums) {
+            if (nums[i] != nums[j]) {
+                nums[++i] = nums[j];
+            }
+            j++;
+        }
+        return i;
     }
 }
