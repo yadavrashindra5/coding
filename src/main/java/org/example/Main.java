@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
 //        4
 //        3 4 5 2
-        int arrayElement[] = {-1,-100,3,99};
+        int arrayElement[] = {1,0,1,1,1};
         ArrayProblem arrayProblem=new ArrayProblem();
-        arrayProblem.rotate(arrayElement,2);
+        System.out.println(arrayProblem.findMaxConsecutiveOnes(arrayElement));
     }
 }

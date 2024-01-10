@@ -161,4 +161,26 @@ public class ArrayProblem {
         int sum1=nums.length*(nums.length+1)/2;
         return sum1-sum;
     }
+
+    /**
+     *
+     * https://leetcode.com/problems/max-consecutive-ones/
+     * Given a binary array nums, return the maximum number of consecutive 1's in the array.
+     * 485. Max Consecutive Ones
+     * */
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int numsSize=nums.length;
+        int lengthOfOnes=0;
+        int count=0;
+        for(int i=0;i<numsSize;++i){
+            if(nums[i]==0){
+                lengthOfOnes=lengthOfOnes<count?count:lengthOfOnes;
+                count=0;
+            }else{
+                count++;
+            }
+        }
+        lengthOfOnes=lengthOfOnes<count?count:lengthOfOnes;
+        return lengthOfOnes;
+    }
 }
