@@ -8,8 +8,9 @@ public class Main {
     public static void main(String[] args) {
 //        4
 //        3 4 5 2
-        int arrayElement[] = {1,0,1,1,1};
+        int arrayElement[] = {1,1,2,1,3};
         ArrayProblem arrayProblem=new ArrayProblem();
-        System.out.println(arrayProblem.findMaxConsecutiveOnes(arrayElement));
+        int result=arrayProblem.longestSubarrayWithSumK(arrayElement,3);
+        System.out.println(result);
     }
 }
