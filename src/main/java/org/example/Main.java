@@ -1,14 +1,16 @@
 package org.example;
 
-import org.example.coding.array.DuplicateNumber;
-import org.example.coding.array.Occurrence;
+import org.example.coding.array.ArrayProblem;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        DuplicateNumber duplicateNumber=new DuplicateNumber();
-        int arr[]={1,2,3,4};
-        duplicateNumber.findDuplicate(arr);
+//        4
+//        3 4 5 2
+        int arrayElement[] = {1,1,2,1,3};
+        ArrayProblem arrayProblem=new ArrayProblem();
+        int result=arrayProblem.longestSubarrayWithSumK(arrayElement,3);
+        System.out.println(result);
     }
 }
