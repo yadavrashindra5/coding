@@ -84,4 +84,103 @@ public class Binary {
         }
         return count;
     }
+
+    /**
+     *
+     * You are given a sorted array ‘arr’ containing ‘n’ integers and an integer ‘x’.
+     * Implement the ‘upperBound’ function to find the index of the upper bound of 'x' in the array.
+     *
+     * Implement Upper Bound
+     *
+     * */
+    public  int upperBound(int []arr, int x, int n){
+        int low=0,high=n-1;
+        int index=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>x){
+                index=mid;
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return index;
+    }
+
+    /**
+     *
+     * Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+     *
+     * 35. Search Insert Position
+     *
+     * https://leetcode.com/problems/search-insert-position
+     *
+     *
+     * **/
+
+    public int searchInsert(int[] nums, int target) {
+        int low=0,high=nums.length-1;
+        int index=-1;
+        while (low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                return mid;
+            } else if (nums[mid]>target) {
+                high=mid-1;
+            }else{
+                index=mid;
+                low=mid+1;
+            }
+        }
+        return index+1;
+    }
+
+    /**
+     *
+     * You're given a sorted array 'a' of 'n' integers and an integer 'x'.
+     *
+     *
+     *
+     * Find the floor and ceiling of 'x' in 'a[0..n-1]'.
+     *
+     *
+     * https://www.codingninjas.com/studio/problems/ceiling-in-a-sorted-array_1825401
+     *
+     *
+     *
+     * **/
+    public  void ceilingInSortedArray(int n, int x, int[] arr) {
+        // Write your code here.
+        int low=0,high=n-1;
+        int floorElement=-1,ceilingElement=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==x){
+                floorElement=arr[mid];
+                break;
+            }else if(arr[mid]>x){
+                high=mid-1;
+            }else{
+                floorElement=arr[mid];
+                low=mid+1;
+            }
+        }
+        low=0;
+        high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==x){
+                ceilingElement=arr[mid];
+                break;
+            }else if(arr[mid]>x){
+                ceilingElement=arr[mid];
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+
+        System.out.println(floorElement+" "+ceilingElement);
+    }
 }
