@@ -254,4 +254,43 @@ public class Binary {
         }
         return -1;
     }
+    public boolean searchTargetInRotatedSortedArray(int[] nums, int target) {
+        int low = 0, high = nums.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target) {
+                return true;
+            }
+
+            // Handle duplicates at the start or end of the array
+            while (low < mid && nums[low] == nums[mid]) {
+                low++;
+            }
+
+            while (high > mid && nums[mid] == nums[high]) {
+                high--;
+            }
+
+            // Check which half is sorted
+            if (nums[low] <= nums[mid]) {
+                // Left half is sorted
+                if (nums[low] <= target && target < nums[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                // Right half is sorted
+                if (nums[mid] < target && target <= nums[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+
+        return false;
+    }
 }
