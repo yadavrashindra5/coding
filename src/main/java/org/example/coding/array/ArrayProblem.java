@@ -218,4 +218,50 @@ public class ArrayProblem {
         }
         return longSub;
     }
+
+    public boolean findRotation(int[][] mat, int[][] target) {
+        int sizeOfMat=mat.length;
+        for(int i=0;i<4;++i){
+            boolean flag=true;
+            mat=transposeMatrix(mat);
+            flag=compareElement(mat,target,flag);
+            if(flag){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean compareElement(int [][]mat,int target[][],boolean flag){
+        int sizeOfMatrix=mat.length;
+        for(int i=0;i<sizeOfMatrix;++i){
+            for(int j=0;j<sizeOfMatrix;++j){
+                if(mat[i][j]!=target[i][j]){
+                    return false;
+                }
+            }
+        }
+        return flag;
+    }
+
+    public int[][] transposeMatrix(int [][]mat){
+        int sizeOfMatrix=mat.length;
+        int newArray[][]=new int[sizeOfMatrix][sizeOfMatrix];
+        for(int i=0;i<sizeOfMatrix;++i){
+            for(int j=0;j<sizeOfMatrix;++j){
+                newArray[i][j]=mat[sizeOfMatrix+j-1][i];
+            }
+        }
+        printResult(newArray);
+        return newArray;
+    }
+
+    public void printResult(int [][]mat){
+        int sizeOfMatrix=mat.length;
+        for(int i=0;i<sizeOfMatrix;++i){
+            for(int j=0;j<sizeOfMatrix;++j){
+                System.out.println(mat[i][j]);
+            }
+        }
+    }
 }

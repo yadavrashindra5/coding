@@ -54,4 +54,22 @@ public class StringProblem {
         }
         return result.trim();
     }
+
+    /*
+    * https://leetcode.com/problems/largest-odd-number-in-string/
+    *
+    * 1903. Largest Odd Number in String
+    *
+    * */
+    public String largestOddNumber(String str) {
+        int sizeOfString=str.length()-1;
+        for(int i=sizeOfString;i>=0;--i){
+            char lastCharacter=str.charAt(i);
+            int isOddOrEven=Character.getNumericValue(lastCharacter);
+            if(isOddOrEven%2!=0){
+                return str.substring(0,i+1);
+            }
+        }
+        return "";
+    }
 }
