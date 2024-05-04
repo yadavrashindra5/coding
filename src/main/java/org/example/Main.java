@@ -4,6 +4,9 @@ package org.example;
 import org.example.coding.array.ArrayProblem;
 import org.example.coding.string.StringProblem;
 
+import java.util.Arrays;
+import java.util.Stack;
+
 
 class Data {
     private int key;
@@ -101,34 +104,30 @@ class MyHashMap {
             }
         }
     }
+
 }
 
 
 public class Main {
     public static void main(String[] args) {
-
-//        StringProblem stringProblem=new StringProblem();
-//        String num = "35427";
-//        String result=stringProblem.largestOddNumber(num);
-//        System.out.println(result);
-//        ArrayProblem arrayProblem = new ArrayProblem();
-//        int mat[][] = {
-//                {0, 1},
-//                {1, 0}
-//        };
-//        int target[][] = {
-//                {1, 0},
-//                {0, 1}
-//        };
-//        arrayProblem.findRotation(mat, target);
-
-        MyHashMap myHashMap = new MyHashMap();
-        myHashMap.put(1, 23);
-        myHashMap.put(2, 24);
-        myHashMap.remove(2);
-        System.out.println(myHashMap);
-        System.out.println(myHashMap.start.val.getKey());
-        System.out.println(myHashMap.start.val.getValue());
-        System.out.println(myHashMap.get(2));
+        String operations[] = {"5", "2", "C", "D", "+"};
+        Stack<Integer> record = new Stack<>();
+        for (int i = 0; i < operations.length; ++i) {
+            String currOp=operations[i];
+            if(currOp.equals("+")){
+                int prev1=record.pop();
+                int prev2=record.pop();
+                record.push(prev1);
+                record.push(prev2);
+                record.push(prev1+prev1);
+            } else if (currOp.equals("D")) {
+                record.push(record.peek()*2);
+            } else if (currOp.equals("C")) {
+                record.pop();
+            }else {
+                record.push(Integer.valueOf(operations[i]));
+            }
+        }
+        System.out.println(record);
     }
 }
