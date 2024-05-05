@@ -72,4 +72,32 @@ public class StringProblem {
         }
         return "";
     }
+
+    public int compareVersion(String version1, String version2) {
+        String v1[]=version1.split("\\.");
+        String v2[]=version2.split("\\.");
+        int lengthOfV1=v1.length,lengthOfV2=v2.length,i=0,j=0;
+        while (i<lengthOfV1&&j<lengthOfV2){
+            if(Integer.valueOf(v1[i])<Integer.valueOf(v2[i])){
+                return -1;
+            }else if(Integer.valueOf(v1[i])>Integer.valueOf(v2[i])){
+                return 1;
+            }
+            i++;
+            j++;
+        }
+        while (i<lengthOfV1){
+            if(Integer.valueOf(v1[i])>0){
+                return 1;
+            }
+            i++;
+        }
+        while (j<lengthOfV2){
+            if(Integer.valueOf(v2[j])>0){
+                return -1;
+            }
+            j++;
+        }
+        return 0;
+    }
 }
