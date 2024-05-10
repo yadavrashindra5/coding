@@ -276,4 +276,24 @@ public class ArrayProblem {
         }
         return result;
     }
+    public int[] kthSmallestPrimeFraction(int[] arr, int k) {
+        int arrayLength=arr.length;
+        ArrayList<ArrayList<Integer>>list=new ArrayList<>();
+        for(int i=0;i<arrayLength;++i){
+            for(int j=i+1;j<arrayLength;++j){
+                ArrayList<Integer>list1=new ArrayList<>();
+                list1.add(arr[i]);
+                list1.add(arr[j]);
+                list.add(list1);
+            }
+        }
+
+        Collections.sort(list,(o1, o2) -> {
+            double fraction1 = (double) o1.get(0) / o1.get(1);
+            double fraction2 = (double) o2.get(0) / o2.get(1);
+            return Double.compare(fraction1, fraction2);
+        });
+        int result[]=list.get(k-1).stream().mapToInt(Integer::intValue).toArray();
+        return result;
+    }
 }
