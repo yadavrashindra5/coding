@@ -276,24 +276,41 @@ public class ArrayProblem {
         }
         return result;
     }
+
+    /*
+     * arr={1,2,3,5}  k=3
+     *
+     * */
     public int[] kthSmallestPrimeFraction(int[] arr, int k) {
-        int arrayLength=arr.length;
-        ArrayList<ArrayList<Integer>>list=new ArrayList<>();
-        for(int i=0;i<arrayLength;++i){
-            for(int j=i+1;j<arrayLength;++j){
-                ArrayList<Integer>list1=new ArrayList<>();
-                list1.add(arr[i]);
-                list1.add(arr[j]);
-                list.add(list1);
+        int left = 0, right = 1, mid = 0;
+        int n = arr.length;
+        int[] res = new int[2];
+        while (left < right) {
+            mid = left + (right - left) / 2;
+            int j = 1,num=0,den=0,total=0;
+            double maxFrac = 0;
+            for (int i = 0; i < n; ++i) {
+                while (j < n && arr[i] >= arr[j] * mid) {
+                    j++;
+                }
+                total+=n-j;
+                if(j<n&&maxFrac<arr[i]*1.0/arr[j]){
+                    maxFrac=arr[i]*1.0/arr[j];
+                    num=i;
+                    den=j;
+                }
+            }
+            if(total==k){
+                res[0]=arr[num];
+                res[1]=arr[den];
+                break;
+            }
+            if(total>k){
+                right=mid;
+            }else{
+                left=mid;
             }
         }
-
-        Collections.sort(list,(o1, o2) -> {
-            double fraction1 = (double) o1.get(0) / o1.get(1);
-            double fraction2 = (double) o2.get(0) / o2.get(1);
-            return Double.compare(fraction1, fraction2);
-        });
-        int result[]=list.get(k-1).stream().mapToInt(Integer::intValue).toArray();
-        return result;
+        return res;
     }
 }
