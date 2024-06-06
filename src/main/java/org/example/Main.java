@@ -4,8 +4,7 @@ package org.example;
 import org.example.coding.array.ArrayProblem;
 import org.example.coding.string.StringProblem;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 
 class Data {
@@ -110,24 +109,6 @@ class MyHashMap {
 
 public class Main {
     public static void main(String[] args) {
-        String operations[] = {"5", "2", "C", "D", "+"};
-        Stack<Integer> record = new Stack<>();
-        for (int i = 0; i < operations.length; ++i) {
-            String currOp=operations[i];
-            if(currOp.equals("+")){
-                int prev1=record.pop();
-                int prev2=record.pop();
-                record.push(prev1);
-                record.push(prev2);
-                record.push(prev1+prev1);
-            } else if (currOp.equals("D")) {
-                record.push(record.peek()*2);
-            } else if (currOp.equals("C")) {
-                record.pop();
-            }else {
-                record.push(Integer.valueOf(operations[i]));
-            }
-        }
-        System.out.println(record);
+
     }
 }
