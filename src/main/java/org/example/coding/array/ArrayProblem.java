@@ -349,4 +349,34 @@ public class ArrayProblem {
         return true;
 
     }
+    public boolean isNStraightHand(int[] hand, int groupSize) {
+        int sizeOfHand=hand.length;
+        if(sizeOfHand%groupSize!=0){
+            return false;
+        }
+        Arrays.sort(hand);
+        List<Integer> list= Arrays.stream(hand).boxed().collect(Collectors.toList());
+        int totalArray=sizeOfHand/groupSize;
+        for(int i=0;i<totalArray;++i){
+            Stack<Integer>list1=new Stack<>();
+            for(int j=0;j<list.size();++j){
+                if(list1.size()!=groupSize) {
+                    if(!list1.contains(list.get(j))){
+                        if((list.get(j)-list1.peek())!=1){
+                            return false;
+                        }
+                        list1.add(list.get(j));
+                        list.remove(list.get(j));
+                        j--;
+                    }
+                }
+            }
+            System.out.println(list1);
+        }
+        if(list.size()!=0){
+            return false;
+        }
+
+        return true;
+    }
 }
