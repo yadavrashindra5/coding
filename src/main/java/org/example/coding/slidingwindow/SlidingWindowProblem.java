@@ -1,9 +1,6 @@
 package org.example.coding.slidingwindow;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class SlidingWindowProblem {
     public void maximumSum(int arr[], int k) {
@@ -37,9 +34,9 @@ public class SlidingWindowProblem {
                     x = (x + 1) % size;
                     c++;
                 }
-                result[i]=sum;
+                result[i] = sum;
             } else if (k < 0) {
-                int x = Math.abs((i+size - 1)) % size;
+                int x = Math.abs((i + size - 1)) % size;
                 int c = 0;
                 int sum = 0;
                 while (c < Math.abs(k)) {
@@ -47,9 +44,9 @@ public class SlidingWindowProblem {
                     x = Math.abs((x - 1)) % size;
                     c++;
                 }
-                result[i]=sum;
+                result[i] = sum;
             } else {
-                result[i]=0;
+                result[i] = 0;
             }
         }
         return result;
@@ -78,5 +75,32 @@ public class SlidingWindowProblem {
         }
         System.out.println(count);
         return 0;
+    }
+
+    public int maximumLengthSubstring(String s) {
+        int i = 0, j = 0, lengthOfS = s.length();
+        Map<Character, Integer> map = new HashMap<>();
+        int substringLength = 0;
+        while (i < lengthOfS) {
+            if (map.containsKey(s.charAt(i)) && map.get(s.charAt(i)) > 1) {
+                while (map.get(s.charAt(i)) > 1) {
+                    map.put(s.charAt(j), map.get(s.charAt(j)) - 1);
+                    j++;
+                }
+                map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
+                if (substringLength < (i - j + 1)) {
+                    substringLength = (i - j + 1);
+                }
+            } else {
+                map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+            }
+            i++;
+        }
+        i--;
+        if (substringLength < (i - j+1)) {
+            substringLength = (i - j+1);
+        }
+        System.out.println(substringLength + " ");
+        return 10;
     }
 }
