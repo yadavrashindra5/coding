@@ -97,10 +97,58 @@ public class SlidingWindowProblem {
             i++;
         }
         i--;
-        if (substringLength < (i - j+1)) {
-            substringLength = (i - j+1);
+        if (substringLength < (i - j + 1)) {
+            substringLength = (i - j + 1);
         }
         System.out.println(substringLength + " ");
         return 10;
+    }
+
+    public void findFirstNegInWindow(int arr[], int k) {
+        //brute force approach
+//        List<Integer>result=new ArrayList<>();
+//        int size=arr.length,windowCount=size-k+1;
+//
+//        for(int i=0;i<windowCount;++i){
+//            int startIndx=i,endIndx=i+k-1;
+//            while (startIndx<=endIndx){
+//                if(arr[startIndx]<0){
+//                    result.add(arr[startIndx]);
+//                    break;
+//                }
+//                startIndx++;
+//            }
+//            if(startIndx>endIndx){
+//                result.add(0);
+//            }
+//        }
+//        System.out.println(result);
+
+//        optimize approach
+
+        List<Integer> result = new ArrayList<>();
+        List<Integer> negList = new ArrayList<>();
+        int size = arr.length;
+        int j = 0, i = 0;
+        while (j < size) {
+            if (arr[j] < 0) {
+                negList.add(arr[j]);
+            }
+            if ((j - i + 1) < k) {
+                j++;
+            } else {
+                if (arr[i] < 0) {
+                    int current = negList.remove(0);
+                    result.add(current);
+                } else {
+                    int current = negList.stream().findFirst().orElse(0);
+                    result.add(current);
+                }
+                i++;
+                j++;
+            }
+        }
+        int[] array = result.stream().mapToInt(Integer::intValue).toArray();
+        System.out.println(Arrays.toString(arr));
     }
 }

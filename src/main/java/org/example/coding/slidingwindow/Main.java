@@ -12,10 +12,12 @@ public class Main {
 //        int k=0;
 //        s.decrypt(arr,k);
 
-        ArrayList<String>strings=new ArrayList<>();
-        strings.add("bcbbbcba");
-        strings.add("aaaa");
-        strings.add("bcaab");
-        strings.forEach(s1 -> s.maximumLengthSubstring(s1));
+//        ArrayList<String>strings=new ArrayList<>();
+//        strings.add("bcbbbcba");
+//        strings.add("aaaa");
+//        strings.add("bcaab");
+//        strings.forEach(s1 -> s.maximumLengthSubstring(s1));
+
+        s.findFirstNegInWindow(new int[]{12,-1,-7,8,-15,30,16,28},3);
     }
 }
