@@ -2,6 +2,8 @@ package org.example.coding.slidingwindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +20,11 @@ public class Main {
 //        strings.add("bcaab");
 //        strings.forEach(s1 -> s.maximumLengthSubstring(s1));
 
-        s.findFirstNegInWindow(new int[]{12,-1,-7,8,-15,30,16,28},3);
+//        s.findFirstNegInWindow(new int[]{12, -1, -7, 8, -15, 30, 16, 28}, 3);
+
+        s.findAnagramsIndices("CBAEBABACD", 10, "ABC", 3);
+        s.findAnagramsIndices("ABADE", 5, "BA", 2);
+        s.findAnagramsIndices("BACDGABCDA",10,"ABCD",4);
+        s.findAnagramsIndices("ABABABA",7,"A",1);
     }
 }

@@ -151,4 +151,57 @@ public class SlidingWindowProblem {
         int[] array = result.stream().mapToInt(Integer::intValue).toArray();
         System.out.println(Arrays.toString(arr));
     }
+
+    public boolean isMapEqual(Map<Character, Integer> anagram, Map<Character, Integer> mSizeCharacter) {
+        if (anagram.size() != mSizeCharacter.size()) {
+            return false;
+        }
+        for (Map.Entry<Character, Integer> entry : anagram.entrySet()) {
+            if (mSizeCharacter.containsKey(entry.getKey())) {
+                int value = entry.getValue();
+                int value2 = mSizeCharacter.get(entry.getKey());
+                if (value != value2) {
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public ArrayList<Integer> findAnagramsIndices(String str, int n, String ptr, int m) {
+        // Write your code here.
+        ArrayList<Integer> result = new ArrayList<>();
+
+        Map<Character, Integer> anagram = new HashMap<>();
+        for (int i = 0; i < ptr.length(); ++i) {
+            anagram.put(ptr.charAt(i), anagram.getOrDefault(ptr.charAt(i), 0) + 1);
+        }
+
+        Map<Character, Integer> mSizeCharacter = new HashMap<>();
+
+        int i = 0, j = 0, count = 0;
+        while (j < n) {
+            Character current = str.charAt(j);
+            mSizeCharacter.put(current, mSizeCharacter.getOrDefault(current, 0) + 1);
+            if (j - i + 1 < m) {
+                j++;
+            } else {
+                boolean mapEqual = isMapEqual(anagram, mSizeCharacter);
+                if (mapEqual) {
+                    count++;
+                    result.add(i);
+                }
+                if(mSizeCharacter.get(str.charAt(i))==1){
+                    mSizeCharacter.remove(str.charAt(i));
+                }else{
+                    mSizeCharacter.put(str.charAt(i),mSizeCharacter.getOrDefault(str.charAt(i),0)-1);
+                }
+                i++;
+                j++;
+            }
+        }
+        return result;
+    }
 }
