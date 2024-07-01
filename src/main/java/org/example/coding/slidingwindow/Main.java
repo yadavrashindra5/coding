@@ -21,10 +21,5 @@ public class Main {
 //        strings.forEach(s1 -> s.maximumLengthSubstring(s1));
 
 //        s.findFirstNegInWindow(new int[]{12, -1, -7, 8, -15, 30, 16, 28}, 3);
-
-        s.findAnagramsIndices("CBAEBABACD", 10, "ABC", 3);
-        s.findAnagramsIndices("ABADE", 5, "BA", 2);
-        s.findAnagramsIndices("BACDGABCDA",10,"ABCD",4);
-        s.findAnagramsIndices("ABABABA",7,"A",1);
     }
 }

@@ -163,7 +163,7 @@ public class SlidingWindowProblem {
                 if (value != value2) {
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
         }
@@ -193,10 +193,10 @@ public class SlidingWindowProblem {
                     count++;
                     result.add(i);
                 }
-                if(mSizeCharacter.get(str.charAt(i))==1){
+                if (mSizeCharacter.get(str.charAt(i)) == 1) {
                     mSizeCharacter.remove(str.charAt(i));
-                }else{
-                    mSizeCharacter.put(str.charAt(i),mSizeCharacter.getOrDefault(str.charAt(i),0)-1);
+                } else {
+                    mSizeCharacter.put(str.charAt(i), mSizeCharacter.getOrDefault(str.charAt(i), 0) - 1);
                 }
                 i++;
                 j++;
