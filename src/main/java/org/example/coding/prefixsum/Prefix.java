@@ -65,4 +65,42 @@ public class Prefix{
        }
         return ans;
     }
+
+    public int findMiddleIndex(int[] nums) {
+        int leftSum=0,rightSum=0;
+
+        for(int i:nums){
+            rightSum+=i;
+        }
+
+        int i=0,size=nums.length;
+
+        while (i<size){
+           rightSum=rightSum-nums[i];
+           if(leftSum==rightSum){
+               return i;
+           }
+           leftSum+=nums[i];
+           i++;
+        }
+        return -1;
+    }
+
+    public int pivotIndex(int[] nums) {
+        int leftSum=0,rightSum=0;
+        for(int i:nums){
+            rightSum+=i;
+        }
+
+        int i=0,size=nums.length;
+        while (i<size){
+            rightSum-=nums[i];
+            if(leftSum==rightSum){
+                return i;
+            }
+            leftSum+=nums[i];
+            i++;
+        }
+        return -1;
+    }
 }
