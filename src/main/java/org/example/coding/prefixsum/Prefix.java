@@ -125,4 +125,25 @@ public class Prefix {
         System.out.println(max);
         return 1;
     }
+
+    public boolean isCovered(int[][] ranges, int left, int right) {
+        Set<Integer>set=new TreeSet<>();
+        int row=ranges.length;
+        int col=ranges[0].length;
+        for(int i=0;i<row;++i){
+            for(int j=0;j<col;++j){
+                set.add(ranges[i][j]);
+            }
+        }
+        int range[]=set.stream().mapToInt(Integer::intValue).toArray();
+
+        int leftIdx=Arrays.binarySearch(range,left);
+        int rightIdx=Arrays.binarySearch(range,right);
+        if(leftIdx<0 || rightIdx<0){
+            return false;
+        } else if ((right-left)==(rightIdx-leftIdx)) {
+            return true;
+        }
+        return true;
+    }
 }

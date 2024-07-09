@@ -9,6 +9,8 @@ public class Main {
 //        prefix.runningSum(new int[]{1,2,3,4,5});
 //        int[] ints = prefix.answerQueries(new int[]{4,5,2,1}, new int[]{3,10,21});
 //        System.out.println(Arrays.toString(ints));
-        System.out.println(prefix.findMiddleIndex(new int[]{2,5}));
+        int ranges[][]={{1,2},{3,4},{5,6}};
+        int left= 2,right=5;
+        System.out.println(prefix.isCovered(ranges,left,right));
     }
 }
