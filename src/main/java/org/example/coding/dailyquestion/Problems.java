@@ -36,18 +36,19 @@ public class Problems {
         }
 
         for (int i = 0; i < nums2.length; ++i) {
-            int currentIndexValue=nums2[i];
+            int currentIndexValue = nums2[i];
             if (map1.containsKey(currentIndexValue) && map1.get(currentIndexValue) != 0) {
                 list.add(currentIndexValue);
                 map1.put(currentIndexValue, map1.get(currentIndexValue) - 1);
             }
         }
-        int result[]=new int[list.size()];
-        for(int i=0;i<list.size();++i){
-            result[i]=list.get(i);
+        int result[] = new int[list.size()];
+        for (int i = 0; i < list.size(); ++i) {
+            result[i] = list.get(i);
         }
         return result;
     }
+
     public int numWaterBottles(int numBottles, int numExchange) {
         int totalBottles = numBottles;
 
@@ -57,5 +58,23 @@ public class Problems {
         }
 
         return totalBottles;
+    }
+
+    public int minOperations(String[] logs) {
+        Stack<String> stack = new Stack<>();
+        stack.push("main");
+        for (int i = 0; i < logs.length; ++i) {
+            String current = logs[i];
+            if (current.startsWith("../")) {
+                int j = 0;
+                while (j < 2 && stack.peek() != "main") {
+                    stack.pop();
+                    j++;
+                }
+            } else if(!current.startsWith("./")){
+                stack.push(logs[i]);
+            }
+        }
+        return stack.size()-1;
     }
 }
