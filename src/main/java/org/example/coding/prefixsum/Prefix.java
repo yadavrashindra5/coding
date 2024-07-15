@@ -118,8 +118,8 @@ public class Prefix {
                     count++;
                 }
             }
-            if(count>max){
-                max=count;
+            if (count > max) {
+                max = count;
             }
         }
         System.out.println(max);
@@ -127,23 +127,75 @@ public class Prefix {
     }
 
     public boolean isCovered(int[][] ranges, int left, int right) {
-        Set<Integer>set=new TreeSet<>();
-        int row=ranges.length;
-        int col=ranges[0].length;
-        for(int i=0;i<row;++i){
-            for(int j=0;j<col;++j){
+        Set<Integer> set = new TreeSet<>();
+        int row = ranges.length;
+        int col = ranges[0].length;
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
                 set.add(ranges[i][j]);
             }
         }
-        int range[]=set.stream().mapToInt(Integer::intValue).toArray();
+        int range[] = set.stream().mapToInt(Integer::intValue).toArray();
 
-        int leftIdx=Arrays.binarySearch(range,left);
-        int rightIdx=Arrays.binarySearch(range,right);
-        if(leftIdx<0 || rightIdx<0){
+        int leftIdx = Arrays.binarySearch(range, left);
+        int rightIdx = Arrays.binarySearch(range, right);
+        if (leftIdx < 0 || rightIdx < 0) {
             return false;
-        } else if ((right-left)==(rightIdx-leftIdx)) {
+        } else if ((right - left) == (rightIdx - leftIdx)) {
             return true;
         }
         return true;
+    }
+
+    public int waysToSplitArray(int[] nums) {
+        int n = nums.length;
+        int sum = 0;
+        int i = 0;
+        while (i < n) {
+            sum += nums[i];
+        }
+
+        int leftSum = 0, result = 0;
+        i = 0;
+        while (i < (n - 1)) {
+            leftSum += nums[i];
+            sum -= nums[i];
+            if (leftSum >= sum) {
+                result++;
+            }
+            i++;
+        }
+        return result;
+    }
+
+    public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int prefix[] = new int[n];
+        int postfix[] = new int[n];
+        int i = 0, prefixProd = 1, postProduct = 1;
+        while (i < n) {
+            prefixProd *= nums[i];
+            prefix[i] = prefixProd;
+            i++;
+        }
+        i = n - 1;
+        while (i >= 0) {
+            postProduct *= nums[i];
+            postfix[i] = postProduct;
+            i--;
+        }
+        int answer[] = new int[n];
+        i = 0;
+        while (i < n) {
+            if (i == 0) {
+                answer[i] = postfix[i + 1];
+            } else if (i == n - 1) {
+                answer[i] = prefix[n - 2];
+            } else {
+                answer[i] = prefix[i - 1] * postfix[i + 1];
+            }
+            i++;
+        }
+        return answer;
     }
 }

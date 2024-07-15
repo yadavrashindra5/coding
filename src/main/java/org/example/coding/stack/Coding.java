@@ -146,22 +146,22 @@ public class Coding {
     public static void minRemoveToMakeValid(String s) {
         System.out.println("minRemoveToMakeValid");
         Stack<Character> stack = new Stack<>();
-        String result="";
+        String result = "";
         for (int i = 0; i < s.length(); ++i) {
-            if(s.charAt(i)=='('){
+            if (s.charAt(i) == '(') {
                 stack.push('(');
-            }else if(!stack.isEmpty()&&s.charAt(i)==')'){
-                String str="";
-                while(!stack.isEmpty()&&stack.peek()!='('){
-                    str=stack.pop()+str;
+            } else if (!stack.isEmpty() && s.charAt(i) == ')') {
+                String str = "";
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    str = stack.pop() + str;
                 }
                 str = stack.pop() + str + ')';
-                result+=str;
-            } else if(Character.isAlphabetic(s.charAt(i))){
-                if(!stack.isEmpty()){
+                result += str;
+            } else if (Character.isAlphabetic(s.charAt(i))) {
+                if (!stack.isEmpty()) {
                     stack.push(s.charAt(i));
-                }else{
-                    result+=s.charAt(i);
+                } else {
+                    result += s.charAt(i);
                 }
             }
         }
@@ -169,27 +169,26 @@ public class Coding {
     }
 
     public static boolean checkValidString(String s) {
-        Stack<Integer>bracket=new Stack<>();
-        Stack<Integer>astrik=new Stack<>();
-        for(int i=0;i<s.length();++i){
-            char currentCharacter=s.charAt(i);
-            if(currentCharacter=='('){
+        Stack<Integer> bracket = new Stack<>();
+        Stack<Integer> astrik = new Stack<>();
+        for (int i = 0; i < s.length(); ++i) {
+            char currentCharacter = s.charAt(i);
+            if (currentCharacter == '(') {
                 bracket.push(i);
-            }else if(currentCharacter==')'){
+            } else if (currentCharacter == ')') {
                 //find open bracket in bracket stack
-                if(!bracket.isEmpty()){
+                if (!bracket.isEmpty()) {
                     bracket.pop();
-                }else if(!astrik.isEmpty()){
+                } else if (!astrik.isEmpty()) {
                     astrik.pop();
-                }
-                else {
+                } else {
                     return false;
                 }
-            }else if(currentCharacter=='*'){
+            } else if (currentCharacter == '*') {
                 astrik.push(i);
             }
         }
-        while(!bracket.isEmpty() && !astrik.isEmpty() && bracket.peek()<astrik.peek()){
+        while (!bracket.isEmpty() && !astrik.isEmpty() && bracket.peek() < astrik.peek()) {
             bracket.pop();
             astrik.pop();
         }
@@ -197,23 +196,23 @@ public class Coding {
     }
 
     public static int countStudents(int[] students, int[] sandwiches) {
-        Deque<Integer>deque=new ArrayDeque<>();
-        for(int i=0;i<students.length;++i){
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < students.length; ++i) {
             deque.add(students[i]);
         }
-        int size=deque.size();
-        int count=0,i=0;
-        while(!deque.isEmpty()){
-            int frontElement=deque.getFirst();
-            if(count==size){
+        int size = deque.size();
+        int count = 0, i = 0;
+        while (!deque.isEmpty()) {
+            int frontElement = deque.getFirst();
+            if (count == size) {
                 return size;
             }
-            if(frontElement==sandwiches[i]){
+            if (frontElement == sandwiches[i]) {
                 deque.pop();
-                size=deque.size();
-                count=0;
+                size = deque.size();
+                count = 0;
                 i++;
-            }else if(frontElement!=sandwiches[i]){
+            } else if (frontElement != sandwiches[i]) {
                 deque.addLast(deque.pop());
                 count++;
             }
@@ -222,23 +221,23 @@ public class Coding {
     }
 
     public static int[] deckRevealedIncreasing(int[] deck) {
-        int size=deck.length;
-        int result[]=new int[size];
-        Deque<Integer>deque=new ArrayDeque<>();
-        for(int i=0;i<size;++i){
+        int size = deck.length;
+        int result[] = new int[size];
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < size; ++i) {
             deque.add(i);
         }
 
         Arrays.sort(deck);
-        int i=0;
-        while (!deque.isEmpty()){
-            int front=deque.pollFirst();
-            result[front]=deck[i];
+        int i = 0;
+        while (!deque.isEmpty()) {
+            int front = deque.pollFirst();
+            result[front] = deck[i];
             i++;
-            try{
-                int secondFront=deque.pop();
+            try {
+                int secondFront = deque.pop();
                 deque.addLast(secondFront);
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
         }
@@ -246,28 +245,24 @@ public class Coding {
     }
 
     /**
-     *
-     *
-     *
-     *
      * @param s this is string
      * @return int this is index of non-repeated character
-     * */
+     */
     public int firstUniqChar(String s) {
-        Map<Character,Integer>map=new HashMap<>();
-        Deque<Integer>deque=new ArrayDeque<>();
-        for(int i=0;i<s.length();++i){
-            char currentChar=s.charAt(i);
-            if(!map.containsKey(currentChar)){
+        Map<Character, Integer> map = new HashMap<>();
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < s.length(); ++i) {
+            char currentChar = s.charAt(i);
+            if (!map.containsKey(currentChar)) {
                 deque.add(i);
-                map.put(currentChar,i);
-            }else{
+                map.put(currentChar, i);
+            } else {
                 deque.remove(map.get(currentChar));
             }
         }
-        try{
+        try {
             return deque.getFirst();
-        }catch (Exception e){
+        } catch (Exception e) {
             return -1;
         }
     }
@@ -298,55 +293,55 @@ public class Coding {
 //    }
 
     public static int minCost(String colors, int[] neededTime) {
-       int prev=-1,next=-1;
-       int count=0;
-        for(int i=0;i<colors.length();++i){
+        int prev = -1, next = -1;
+        int count = 0;
+        for (int i = 0; i < colors.length(); ++i) {
         }
         return 0;
     }
 
     public static int numIdenticalPairs(int[] nums) {
-        HashMap<Integer,Integer>map=new HashMap<>();
-        int count=0;
-        for(int i=0;i<nums.length;++i){
-            if(map.containsKey(nums[i])){
-                count=map.get(nums[i])+count;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            if (map.containsKey(nums[i])) {
+                count = map.get(nums[i]) + count;
             }
-            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
         return count;
     }
 
-    public static String reverseString(String str){
-        int i=0,j=str.length()-1;
-        StringBuilder stringBuilder=new StringBuilder(str);
+    public static String reverseString(String str) {
+        int i = 0, j = str.length() - 1;
+        StringBuilder stringBuilder = new StringBuilder(str);
         stringBuilder.reverse();
         return stringBuilder.toString();
     }
 
     public static int[] getConcatenation(int[] nums) {
-        int n=nums.length;
-        int ans[]=new int[2*n];
-        int i=0,j=0;
-        while(i<(2*n)){
-            int index=i%n;
+        int n = nums.length;
+        int ans[] = new int[2 * n];
+        int i = 0, j = 0;
+        while (i < (2 * n)) {
+            int index = i % n;
             System.out.println(nums[index]);
-            ans[i]=nums[index];
+            ans[i] = nums[index];
             i++;
         }
         return ans;
     }
 
     public static int[] shuffle(int[] nums, int n) {
-        int i=0,j=n,k=0;
-        int sizeOfNums=2*n;
-        int ans[]=new int[sizeOfNums];
-        while(k<sizeOfNums){
-            if(k%2==0){
-                ans[k]=nums[i];
+        int i = 0, j = n, k = 0;
+        int sizeOfNums = 2 * n;
+        int ans[] = new int[sizeOfNums];
+        while (k < sizeOfNums) {
+            if (k % 2 == 0) {
+                ans[k] = nums[i];
                 i++;
-            }else{
-                ans[k]=nums[j];
+            } else {
+                ans[k] = nums[j];
                 j++;
             }
             k++;
@@ -358,9 +353,9 @@ public class Coding {
     }
 
     public static List<Integer> findWordsContaining(String[] words, char x) {
-        List<Integer>list=new ArrayList<>();
-        for(int i=0;i<words.length;++i){
-            if(words[i].contains(String.valueOf(x))){
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < words.length; ++i) {
+            if (words[i].contains(String.valueOf(x))) {
                 list.add(i);
             }
         }
