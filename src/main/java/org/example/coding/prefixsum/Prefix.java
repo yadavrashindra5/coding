@@ -3,7 +3,16 @@ package org.example.coding.prefixsum;
 import java.util.*;
 import java.util.stream.IntStream;
 
+/**
+ * The type Prefix.
+ */
 public class Prefix {
+    /**
+     * Running sum int [ ].
+     *
+     * @param nums the nums
+     * @return the int [ ]
+     */
     public int[] runningSum(int[] nums) {
 //        List<Integer>list=new ArrayList<>();
 //        int sum=0;
@@ -21,6 +30,13 @@ public class Prefix {
         return result;
     }
 
+    /**
+     * Modify binary search int.
+     *
+     * @param prefixSum the prefix sum
+     * @param target    the target
+     * @return the int
+     */
     public int modifyBinarySearch(int prefixSum[], int target) {
         int sizeOfPrefix = prefixSum.length;
         int startIndex = 0, endIndex = sizeOfPrefix - 1, index = -1;
@@ -39,6 +55,13 @@ public class Prefix {
         return index + 1;
     }
 
+    /**
+     * Answer queries int [ ].
+     *
+     * @param nums    the nums
+     * @param queries the queries
+     * @return the int [ ]
+     */
     public int[] answerQueries(int[] nums, int[] queries) {
         int[] prefixSum = new int[nums.length];
         int[] ans = new int[queries.length];
@@ -66,6 +89,12 @@ public class Prefix {
         return ans;
     }
 
+    /**
+     * Find middle index int.
+     *
+     * @param nums the nums
+     * @return the int
+     */
     public int findMiddleIndex(int[] nums) {
         int leftSum = 0, rightSum = 0;
 
@@ -86,6 +115,12 @@ public class Prefix {
         return -1;
     }
 
+    /**
+     * Pivot index int.
+     *
+     * @param nums the nums
+     * @return the int
+     */
     public int pivotIndex(int[] nums) {
         int leftSum = 0, rightSum = 0;
         for (int i : nums) {
@@ -104,6 +139,12 @@ public class Prefix {
         return -1;
     }
 
+    /**
+     * Maximum population int.
+     *
+     * @param logs the logs
+     * @return the int
+     */
     public int maximumPopulation(int[][] logs) {
         int row = logs.length;
         int max = Integer.MIN_VALUE;
@@ -126,6 +167,14 @@ public class Prefix {
         return 1;
     }
 
+    /**
+     * Is covered boolean.
+     *
+     * @param ranges the ranges
+     * @param left   the left
+     * @param right  the right
+     * @return the boolean
+     */
     public boolean isCovered(int[][] ranges, int left, int right) {
         Set<Integer> set = new TreeSet<>();
         int row = ranges.length;
@@ -147,6 +196,12 @@ public class Prefix {
         return true;
     }
 
+    /**
+     * Ways to split array int.
+     *
+     * @param nums the nums
+     * @return the int
+     */
     public int waysToSplitArray(int[] nums) {
         int n = nums.length;
         int sum = 0;
@@ -168,6 +223,12 @@ public class Prefix {
         return result;
     }
 
+    /**
+     * Product except self int [ ].
+     *
+     * @param nums the nums
+     * @return the int [ ]
+     */
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
         int prefix[] = new int[n];
@@ -197,5 +258,38 @@ public class Prefix {
             i++;
         }
         return answer;
+    }
+
+
+    /**
+     * Subarray sum int.
+     *
+     * @param nums the nums
+     * @param k    the k
+     * @return the int
+     */
+    public int subarraySum(int[] nums, int k) {
+//        int n=nums.length,count=0;
+//        for(int i=0;i<n;++i){
+//            int sum=0;
+//            for(int j=i;j<n;++j){
+//                sum+=nums[j];
+//                if(sum==k){
+//                    count++;
+//                }
+//            }
+//        }
+//        return count;
+        int n = nums.length,sum=0,count=0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        for (int i = 0; i < n; ++i) {
+            sum+=nums[i];
+            if(map.containsKey(sum-k)){
+                count++;
+            }
+            map.put(sum,1);
+        }
+        return count;
     }
 }
