@@ -21,6 +21,7 @@ public class Main {
 //        int nums[] = {3, 1, 2, 3};
 //        System.out.println(Arrays.toString(problems.sortArrayByParity(nums)));
 //        System.out.println(Arrays.toString(problems.sortArrayByParityII(new int[]{2,5,3,4})));
-
+        System.out.println(Arrays.toString(problems.sortedSquares(new int[]{-3,0,2,3,11})));
+//        System.out.println(Arrays.toString(problems.shortestToChar("loveleetcode",'e')));
     }
 }

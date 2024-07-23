@@ -60,4 +60,97 @@ public class Problems {
         return nums;
     }
 
+    public int[] sortedSquares(int[] nums) {
+//        Approach 1
+//        for (int i = 0; i < nums.length; ++i) {
+//            nums[i] = nums[i] * nums[i];
+//        }
+//        int size = nums.length;
+//        int i = 0, j = size - 1;
+//        while (i < j) {
+//            if (nums[i] > nums[j]) {
+//                int temp=nums[i];
+//                nums[i]=nums[j];
+//                nums[j]=temp;
+//            }else{
+//                j--;
+//            }
+//        }
+//        return nums;
+
+//        Approach 2
+
+        int n = nums.length;
+        for (int i = 0; i < n; ++i) {
+            nums[i] = nums[i] * nums[i];
+        }
+        int answer[] = new int[n];
+        int k = n - 1;
+        int i = 0, j = n - 1;
+        while (i < j) {
+            if (nums[i] < nums[j]) {
+                nums[k] = nums[j];
+                j--;
+            } else {
+                nums[k] = nums[i];
+                i++;
+            }
+            k++;
+        }
+        return nums;
+    }
+
+    public int[] shortestToChar(String s, char c) {
+//        approach 1
+   /*     int n = s.length();
+        if (n == 1) {
+            return new int[]{0};
+        }
+        int i = 0, j = 1, k = j;
+        int answer[] = new int[n];
+        while (j < n) {
+            if (s.charAt(j) != c) {
+                while (s.charAt(j) != c) {
+                    j++;
+                }
+            } else {
+                if (s.charAt(k) == c) {
+                    answer[i] = Math.abs(i - k) < Math.abs(i - j) ? Math.abs(i - k) : Math.abs(i - j);
+                } else {
+                    answer[i] = Math.abs(i - j);
+                }
+                if (i == j) {
+                    k = j;
+                    j++;
+                }
+                i++;
+            }
+        }
+        return answer;
+    */
+        int n = s.length();
+        if (n == 1) {
+            return new int[]{0};
+        }
+        int answer[] = new int[n];
+        int i = 0, j = 0, k = j;
+        while (j < n) {
+            if (s.charAt(j) != c) {
+                j++;
+            } else {
+                if (s.charAt(k) == c) {
+                    answer[i] = Math.abs(i - k) < Math.abs(i - j) ? Math.abs(i - k) : Math.abs(i - j);
+                } else {
+                    answer[i] = Math.abs(i - j);
+                }
+                if (i == j) {
+                    k = j;
+                    j++;
+                }
+                i++;
+            }
+        }
+        return answer;
+    }
+
 }
