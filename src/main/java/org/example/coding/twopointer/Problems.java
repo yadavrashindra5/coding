@@ -153,4 +153,23 @@ public class Problems {
         return answer;
     }
 
+    public String reverseOnlyLetters(String s) {
+        StringBuilder builder = new StringBuilder(s);
+        int i = 0, j = s.length() - 1;
+        while (i < j) {
+            if (!Character.isLetter(builder.charAt(i))) {
+                i++;
+            } else if (!Character.isLetter(builder.charAt(j))) {
+                j--;
+            } else {
+                char x = s.charAt(i);
+                builder.setCharAt(i, builder.charAt(j));
+                builder.setCharAt(j, x);
+                i++;
+                j--;
+            }
+        }
+        return builder.toString();
+    }
+
 }
