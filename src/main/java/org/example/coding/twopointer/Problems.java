@@ -1,7 +1,9 @@
 package org.example.coding.twopointer;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Problems {
     public int countPairs(List<Integer> nums, int target) {
@@ -170,6 +172,27 @@ public class Problems {
             }
         }
         return builder.toString();
+    }
+
+
+    public int[] pivotArray(int[] nums, int pivot) {
+//        [9,12,5,10,14,3,10] pivot=10
+        int n = nums.length, i = 0, j = n - 1;
+        int k = 0, l = n - 1;
+        int result[] = new int[n];
+        while (i < n) {
+            if (nums[i] < pivot) {
+                result[k] = nums[i];
+                k++;
+            }
+            if (nums[j] > pivot) {
+                result[l] = nums[j];
+                l--;
+            }
+            i++;
+            j--;
+        }
+        return result;
     }
 
 }

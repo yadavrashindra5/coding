@@ -24,5 +24,6 @@ public class Main {
 //        System.out.println(Arrays.toString(problems.sortedSquares(new int[]{-3,0,2,3,11})));
 //        System.out.println(Arrays.toString(problems.shortestToChar("loveleetcode",'e')));
         System.out.println(problems.reverseOnlyLetters("Test1ng-Leet=code-Q!"));
+        System.out.println(Arrays.toString(problems.pivotArray(new int[]{9, 12, 5, 10, 14, 3, 10}, 10)));
     }
 }
