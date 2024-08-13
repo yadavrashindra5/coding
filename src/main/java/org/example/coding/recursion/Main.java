@@ -11,7 +11,9 @@ public class Main {
 //        problem.printStarPattern2(5,5);
 //        problem.printSubsets(new int[]{1, 2, 3}, 3, 0, "");
 //        problem.consecutive(3, "");
-        int arr[]={1,2,3,4,5};
-        System.out.println(problem.checkSorted(arr,0,arr.length));
+//        int arr[]={1,2,3,4,5};
+//        System.out.println(problem.checkSorted(arr,0,arr.length));
+//        System.out.println(problem.findPathStartToEnd(2,2,0,0,0,""));
+        System.out.println(problem.nthcell(4,0,0));
     }
 }

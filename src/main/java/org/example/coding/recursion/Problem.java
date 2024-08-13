@@ -150,7 +150,7 @@ public class Problem {
     }
 
     public boolean checkSorted(int arr[], int i, int n) {
-        if (i == n-1) {
+        if (i == n - 1) {
             return true;
         }
         if (arr[i] <= arr[i + 1]) {
@@ -158,5 +158,38 @@ public class Problem {
         } else {
             return false;
         }
+    }
+
+    public int findPathStartToEnd(int row, int col, int i, int j, int count, String path) {
+        if (i == row || j == col) {
+            return count;
+        }
+        if (i == row - 1 && j == col - 1) {
+            System.out.println(path);
+            count++;
+            return count;
+        }
+        count = findPathStartToEnd(row, col, i, j + 1, count, path + "R");
+        count = findPathStartToEnd(row, col, i + 1, j+1, count, path + "D1");
+        count = findPathStartToEnd(row, col, i + 1, j, count, path + "D");
+        return count;
+    }
+
+    public int nthcell(int n,int i,int count){
+        if(i==n-1){
+            count+=1;
+            return count;
+        }
+        if(i>=n){
+            return count;
+        }
+
+        count=nthcell(n,i+1,count);
+        count=nthcell(n,i+2,count);
+        count=nthcell(n,i+3,count);
+        count=nthcell(n,i+4,count);
+        count=nthcell(n,i+5,count);
+        count=nthcell(n,i+6,count);
+        return count;
     }
 }
