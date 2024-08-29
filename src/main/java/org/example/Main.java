@@ -1,11 +1,6 @@
 package org.example;
 
 
-import org.example.coding.array.ArrayProblem;
-import org.example.coding.string.StringProblem;
-
-import java.util.*;
-
 
 class Data {
     private int key;
@@ -109,6 +104,5 @@ class MyHashMap {
 
 public class Main {
     public static void main(String[] args) {
-        Student student=new Student();
     }
 }

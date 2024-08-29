@@ -1,5 +1,9 @@
 package org.example.coding.recursion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Problem problem = new Problem();
@@ -14,6 +18,13 @@ public class Main {
 //        int arr[]={1,2,3,4,5};
 //        System.out.println(problem.checkSorted(arr,0,arr.length));
 //        System.out.println(problem.findPathStartToEnd(2,2,0,0,0,""));
-        System.out.println(problem.nthcell(4,0,0));
+//        System.out.println(problem.nthcell(4,0,0));
+//        System.out.println(problem.sumOfNatural(5));
+//        System.out.println(problem.powerOfN(5,4));
+//        problem.countNumberOfDigits(909877000,0);
+//        System.out.println(problem.checkPalidrome("1001", 0));
+        int arr[] = new int[]{1,2,3,4,5,6,7,10,9};
+//        System.out.println(problem.findMinElement(arr, arr.length, 0, Integer.MAX_VALUE));
+        System.out.println(problem.checkArrayIsSorted(arr, 0, arr.length));
     }
 }

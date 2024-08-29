@@ -1,6 +1,5 @@
 package org.example.coding.array;
 
-import org.example.tree.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
