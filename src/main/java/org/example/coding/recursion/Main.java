@@ -3,6 +3,7 @@ package org.example.coding.recursion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +24,13 @@ public class Main {
 //        System.out.println(problem.powerOfN(5,4));
 //        problem.countNumberOfDigits(909877000,0);
 //        System.out.println(problem.checkPalidrome("1001", 0));
-        int arr[] = new int[]{1,2,3,4,5,6,7,10,9};
+        int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7, 10, 9};
 //        System.out.println(problem.findMinElement(arr, arr.length, 0, Integer.MAX_VALUE));
-        System.out.println(problem.checkArrayIsSorted(arr, 0, arr.length));
+//        System.out.println(problem.checkArrayIsSorted(arr, 0, arr.length));
+//        Stack<Character> stack = new Stack<>();
+//        String str = "";
+//        System.out.println(problem.checkValidString(str, stack, 0, str.length()));
+        String str1 = "CCB";
+        problem.generateString(str1, "", 0, str1.length());
     }
 }

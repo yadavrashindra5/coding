@@ -2,6 +2,7 @@ package org.example.coding.recursion;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class Problem {
     public void printNatural(int n, int i) {
@@ -270,17 +271,55 @@ public class Problem {
         return findMinElement(arr, n, i + 1, min);
     }
 
-    public boolean checkArrayIsSorted(int arr[],int i,int n){
-        if(n==1){
+    public boolean checkArrayIsSorted(int arr[], int i, int n) {
+        if (n == 1) {
             return true;
         }
-        if(i==n-1){
+        if (i == n - 1) {
             return true;
         }
-        if(arr[i]<arr[i+1]){
-            return checkArrayIsSorted(arr,i+1,n);
-        }else{
+        if (arr[i] < arr[i + 1]) {
+            return checkArrayIsSorted(arr, i + 1, n);
+        } else {
             return false;
         }
+    }
+
+    public boolean checkValidString(String str, Stack<Character> stack, int i, int n) {
+        if (i == n) {
+            if (!stack.isEmpty()) {
+                return false;
+            }
+            return true;
+        }
+        char currentIndexChar = str.charAt(i);
+        if (currentIndexChar == '(' || currentIndexChar == '{' || currentIndexChar == '[') {
+            stack.push(currentIndexChar);
+            return checkValidString(str, stack, i + 1, n);
+        } else {
+            try {
+                char popedChar = stack.pop();
+                if (currentIndexChar == ')' && (popedChar == '{' || popedChar == '[')) {
+                    return false;
+                } else if (currentIndexChar == '}' && (popedChar == '(' || popedChar == '[')) {
+                    return false;
+                } else if (currentIndexChar == ']' && (popedChar == '(' || popedChar == '{')) {
+                    return false;
+                }
+                return checkValidString(str, stack, i + 1, n);
+            } catch (Exception e) {
+                return false;
+            }
+        }
+    }
+
+    public void generateString(String str, String result, int i, int n) {
+        if (i == n) {
+            System.out.println(result);
+            return;
+        }
+
+        generateString(str, result, i + 1, n);
+        generateString(str, result + str.charAt(i), i + 1, n);
     }
 }
