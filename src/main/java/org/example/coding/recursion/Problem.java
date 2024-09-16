@@ -1,8 +1,10 @@
 package org.example.coding.recursion;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class Problem {
     public void printNatural(int n, int i) {
@@ -322,4 +324,37 @@ public class Problem {
         generateString(str, result, i + 1, n);
         generateString(str, result + str.charAt(i), i + 1, n);
     }
+
+    public int maxElement(int arr[], int i, int n, int max) {
+        if (i == n) {
+            return max;
+        }
+        max = Math.max(max, arr[i]);
+        return maxElement(arr, i + 1, n, max);
+    }
+
+    public void printSubsequences(String str, String subsequence, int i, int n) {
+        if (i == n) {
+            System.out.println(subsequence);
+            return;
+        }
+        printSubsequences(str, subsequence, i + 1, n);
+        printSubsequences(str, subsequence + str.charAt(i), i + 1, n);
+    }
+
+    public void printSubset(int nums[], int i, int n, String str, List<List<Integer>> result) {
+        if (i == n) {
+            str = str.trim();
+            String x[] = str.isEmpty() ? new String[0] : str.split(" ");
+            List<Integer> list = new ArrayList<>();
+            for (int j = 0; j < x.length; ++j) {
+                list.add(Integer.valueOf(x[j]));
+            }
+            result.add(list);
+            return;
+        }
+        printSubset(nums, i + 1, n, str, result); // Exclude nums[i]
+        printSubset(nums, i + 1, n, str + nums[i] + " ", result); // Include nums[i]
+    }
+
 }

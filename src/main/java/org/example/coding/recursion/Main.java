@@ -24,13 +24,22 @@ public class Main {
 //        System.out.println(problem.powerOfN(5,4));
 //        problem.countNumberOfDigits(909877000,0);
 //        System.out.println(problem.checkPalidrome("1001", 0));
-        int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7, 10, 9};
+//        int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7, 10, 9};
 //        System.out.println(problem.findMinElement(arr, arr.length, 0, Integer.MAX_VALUE));
 //        System.out.println(problem.checkArrayIsSorted(arr, 0, arr.length));
 //        Stack<Character> stack = new Stack<>();
 //        String str = "";
 //        System.out.println(problem.checkValidString(str, stack, 0, str.length()));
-        String str1 = "CCB";
-        problem.generateString(str1, "", 0, str1.length());
+//        String str1 = "CCB";
+//        problem.generateString(str1, "", 0, str1.length());
+//        int arr[] = {5, 4, 3, 6, 8, 1, 2};
+//        System.out.println(problem.maxElement(arr, 0, arr.length, Integer.MIN_VALUE));
+        problem.printSubsequences("aaa", "", 0, 3);
+
+        int arr[] = {1, 2, 3};
+        List<List<Integer>> result = new ArrayList<>();
+
+        problem.printSubset(arr, 0, arr.length, "", result);
+        System.out.println(result);
     }
 }
