@@ -34,12 +34,14 @@ public class Main {
 //        problem.generateString(str1, "", 0, str1.length());
 //        int arr[] = {5, 4, 3, 6, 8, 1, 2};
 //        System.out.println(problem.maxElement(arr, 0, arr.length, Integer.MIN_VALUE));
-        problem.printSubsequences("aaa", "", 0, 3);
+//        problem.printSubsequences("aaa", "", 0, 3);
 
-        int arr[] = {1, 2, 3};
-        List<List<Integer>> result = new ArrayList<>();
+//        int arr[] = {1, 2, 3};
+//        List<List<Integer>> result = new ArrayList<>();
+//
+//        problem.printSubset(arr, 0, arr.length, "", result);
+//        System.out.println(result);
 
-        problem.printSubset(arr, 0, arr.length, "", result);
-        System.out.println(result);
+        problem.printN(7);
     }
 }

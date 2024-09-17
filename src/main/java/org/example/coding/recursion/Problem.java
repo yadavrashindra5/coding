@@ -357,4 +357,14 @@ public class Problem {
         printSubset(nums, i + 1, n, str + nums[i] + " ", result); // Include nums[i]
     }
 
+    public void printN(int n) {
+        if (n == 1) {
+            System.out.print(1);
+            return;
+        }
+        printN(n - 1);
+        System.out.println();
+        System.out.print(n);
+    }
+
 }
