@@ -42,6 +42,22 @@ public class Main {
 //        problem.printSubset(arr, 0, arr.length, "", result);
 //        System.out.println(result);
 
-        problem.printN(7);
+//        problem.printN(7);
+        Stack<Integer>stack=new Stack<>();
+        stack.push(2);
+        stack.push(4);
+        stack.push(3);
+        stack.push(6);
+        stack.push(5);
+        stack.push(1);
+        stack.push(8);
+//        List<Integer>list=new ArrayList<>();
+//        problem.sortStack(stack,stack.size(),list);
+
+//        problem.deleteMiddleElementFromStack(stack,4);
+//        System.out.println(stack);
+        System.out.println(stack);
+        problem.reverseStack(stack);
+        System.out.println(stack);
     }
 }

@@ -367,4 +367,77 @@ public class Problem {
         System.out.print(n);
     }
 
+    public void sortArray(int arr[], int i) {
+        if (arr.length - 1 == i) {
+            return;
+        }
+        sortArray(arr, i + 1);
+        int j = i + 1, temp = arr[i];
+        while (j < arr.length) {
+            if (temp > arr[j]) {
+                arr[j - 1] = arr[j];
+                arr[j] = temp;
+                break;
+            }
+            j++;
+        }
+    }
+
+    public void sortStack(Stack<Integer> stack, int size, List<Integer> list) {
+        if (stack.isEmpty()) {
+            System.out.println(list);
+            return;
+        }
+        int peekValue = stack.pop();
+        if (list.isEmpty()) {
+            list.add(peekValue);
+        } else {
+            insertInt(list, peekValue, 0);
+        }
+        sortStack(stack, size, list);
+    }
+
+    public void insertInt(List<Integer> list, int peekValue, int i) {
+        if (list.isEmpty() || list.size() == i) {
+            list.add(peekValue);
+            return;
+        }
+        if (list.get(i) > peekValue) {
+            list.add(i, peekValue);
+            return;
+        }
+        insertInt(list, peekValue, i + 1);
+    }
+
+    public void deleteMiddleElementFromStack(Stack<Integer> stack, int k) {
+        if (stack.isEmpty()) {
+            return;
+        }
+        if (k == 1) {
+            stack.pop();
+            return;
+        }
+        int topElement = stack.pop();
+        deleteMiddleElementFromStack(stack, k - 1);
+        stack.push(topElement);
+    }
+
+    public void reverseStackImpl(Stack<Integer> stack, int elem) {
+        if (stack.isEmpty()) {
+            stack.push(elem);
+            return;
+        }
+        int x = stack.pop();
+        reverseStackImpl(stack, elem);
+        stack.push(x);
+    }
+
+    public void reverseStack(Stack<Integer> stack) {
+        if (stack.isEmpty()) {
+            return;
+        }
+        int x = stack.pop();
+        reverseStack(stack);
+        reverseStackImpl(stack, x);
+    }
 }
