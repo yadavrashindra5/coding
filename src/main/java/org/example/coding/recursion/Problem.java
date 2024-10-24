@@ -455,4 +455,52 @@ public class Problem {
         int count = (str.charAt(i) == ch) ? 1 : 0;
         return count + occurrenceOfCharacter(str, ch, i + 1);
     }
+
+    public int recursiveBinarySearch(int[] arr, int key, int low, int high) {
+        if (low > high) {
+            return -1;
+        }
+
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == key) {
+            return mid;
+        } else if (key < arr[mid]) {
+            return recursiveBinarySearch(arr, key, low, mid - 1);
+        } else {
+            return recursiveBinarySearch(arr, key, mid + 1, high);
+        }
+    }
+
+
+    /**
+     * Reverse number int.
+     *
+     * @param num the num
+     * @param rev the rev
+     * @return the int
+     */
+    public int reverseNumber(int num, int rev) {
+        if (num == 0) {
+            return rev;
+        }
+        return reverseNumber(num / 10, (rev * 10) + (num % 10));
+    }
+
+    public boolean isPalindrome(int num) {
+        if (num == 0) {
+            return false;
+        }
+        return num == reverseNumber(num, 0);
+    }
+
+    public int findMaxElement(int arr[], int max, int i) {
+        if (i == arr.length) {
+            return max;
+        }
+        if (max < arr[i]) {
+            max = arr[i];
+        }
+        return findMaxElement(arr, max, i + 1);
+    }
 }

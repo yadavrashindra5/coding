@@ -66,7 +66,9 @@ public class Main {
 //        problem.printN(5);
 //        System.out.println(problem.reverseString("rashi", 0, ""));
 
-        int arr[] = {1, 2, 3, 4, 5, 6, 7};
+        int arr[] = {1, 2, 3, 1, 8, 9, 15, 10};
 //        System.out.println(problem.occurrenceOfCharacter("rashindra", 'a', 0));
+//        System.out.println(problem.isPalindrome(125));
+        System.out.println(problem.findMaxElement(arr, Integer.MIN_VALUE, 0));
     }
 }
