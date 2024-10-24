@@ -1,9 +1,7 @@
 package org.example.coding.recursion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Problem {
@@ -27,10 +25,6 @@ public class Problem {
             arr[i] = arr[i + 1];
             arr[i + 1] = temp;
         }
-    }
-
-    public void sortArray(int arr[]) {
-        System.out.println(Arrays.toString(arr));
     }
 
     public boolean powerOfFour(int n, int i) {
@@ -90,20 +84,6 @@ public class Problem {
         }
 
         return consecutiveOnes(n - 1) + consecutiveOnes(n - 2);
-    }
-
-    public int powerOf(int a, int b) {
-        if (b == 0) {
-            return 1;
-        } else if (b == 1) {
-            return a;
-        }
-        int x = powerOf(a, b / 2);
-        if (b % 2 == 0) {
-            return x * x;
-        } else {
-            return a * x * x;
-        }
     }
 
     public void printStarPattern(int n, int i) {
@@ -196,29 +176,6 @@ public class Problem {
         return count;
     }
 
-    public void printNTimes(int n, int i, String name) {
-        if (i == n) {
-            return;
-        }
-        System.out.println(name);
-        printNTimes(n, i + 1, name);
-    }
-
-    public void printNaturalInReverse(int n) {
-        if (n <= 0) {
-            return;
-        }
-        System.out.println(n);
-        printNaturalInReverse(n - 1);
-    }
-
-    public int sumOfNNumber(int i, int n, int sum) {
-        if (i > n) {
-            return sum;
-        }
-        return sumOfNNumber(i + 1, n, sum + i);
-    }
-
     public void reverseAnArray(int arr[], int i, int j) {
         if (i == j) {
             return;
@@ -227,20 +184,6 @@ public class Problem {
         arr[i] = arr[j];
         arr[j] = temp;
         reverseAnArray(arr, i + 1, j - 1);
-    }
-
-    public int sumOfNatural(int n) {
-        if (n <= 0) {
-            return 0;
-        }
-        return n + sumOfNatural(n - 1);
-    }
-
-    public int powerOfN(int base, int exp) {
-        if (exp == 0) {
-            return 1;
-        }
-        return base * powerOf(base, exp - 1);
     }
 
     public void countNumberOfDigits(int n, int count) {
@@ -315,16 +258,6 @@ public class Problem {
         }
     }
 
-    public void generateString(String str, String result, int i, int n) {
-        if (i == n) {
-            System.out.println(result);
-            return;
-        }
-
-        generateString(str, result, i + 1, n);
-        generateString(str, result + str.charAt(i), i + 1, n);
-    }
-
     public int maxElement(int arr[], int i, int n, int max) {
         if (i == n) {
             return max;
@@ -355,16 +288,6 @@ public class Problem {
         }
         printSubset(nums, i + 1, n, str, result); // Exclude nums[i]
         printSubset(nums, i + 1, n, str + nums[i] + " ", result); // Include nums[i]
-    }
-
-    public void printN(int n) {
-        if (n == 1) {
-            System.out.print(1);
-            return;
-        }
-        printN(n - 1);
-        System.out.println();
-        System.out.print(n);
     }
 
     public void sortArray(int arr[], int i) {
@@ -439,5 +362,97 @@ public class Problem {
         int x = stack.pop();
         reverseStack(stack);
         reverseStackImpl(stack, x);
+    }
+
+    public String generateString(String str, String result, int i, int k) {
+        if (i == str.length()) {
+            str += result;
+            return str;
+        }
+        if ((int) str.charAt(i) == 122) {
+            result += "a";
+        }
+        result += String.valueOf((char) ((int) str.charAt(i) + 1));
+        str = generateString(str, result, i + 1, k);
+        if (str.length() < k) {
+            str = generateString(str, "", 0, k);
+        }
+        return str;
+    }
+
+    public int printFactorial(int n) {
+        //base case
+        if (n == 1 || n == 0) {
+            return n;
+        }
+        //recursive intuation || recursive case
+        int x = printFactorial(n - 1);
+        //self work
+        return x * n;
+    }
+
+    public int fibonacciSequence(int n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+        return fibonacciSequence(n - 1) + fibonacciSequence(n - 2);
+    }
+
+    public int powerOfNumber(int a, int b) {
+        if (b == 0) {
+            return 1;
+        }
+        return a * powerOfNumber(a, b - 1);
+    }
+
+    public void printN(int n) {
+        if (n == 0) {
+            return;
+        }
+        printN(n - 1);
+        System.out.print(n + " ");
+    }
+
+    public String reverseString(String str, int i, String result) {
+        if (str.length() == i) {
+            return result;
+        }
+        result = String.valueOf(str.charAt(i)) + result;
+        return reverseString(str, i + 1, result);
+    }
+
+    public boolean checkPalidrome(String str, int i, int j) {
+        if (i >= j) {
+            return true;
+        } else if (str.charAt(i) != str.charAt(j)) {
+            return false;
+        }
+        return checkPalidrome(str, i + 1, j - 1);
+    }
+
+    public int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        int temp = a;
+        a = b;
+        b = temp % b;
+        return gcd(a, b);
+    }
+
+    public int sumOfDigits(int num) {
+        if (num == 0) {
+            return 0;
+        }
+        int mod = num % 10;
+        return mod + sumOfDigits(num / 10);
+    }
+
+    public int occurrenceOfCharacter(String str, char ch, int i) {
+        if (i == str.length()) {
+            return 0;
+        }
+        int count = (str.charAt(i) == ch) ? 1 : 0;
+        return count + occurrenceOfCharacter(str, ch, i + 1);
     }
 }

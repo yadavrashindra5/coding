@@ -1,9 +1,6 @@
 package org.example.coding.recursion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,21 +40,33 @@ public class Main {
 //        System.out.println(result);
 
 //        problem.printN(7);
-        Stack<Integer>stack=new Stack<>();
-        stack.push(2);
-        stack.push(4);
-        stack.push(3);
-        stack.push(6);
-        stack.push(5);
-        stack.push(1);
-        stack.push(8);
+//        Stack<Integer>stack=new Stack<>();
+//        stack.push(2);
+//        stack.push(4);
+//        stack.push(3);
+//        stack.push(6);
+//        stack.push(5);
+//        stack.push(1);
+//        stack.push(8);
 //        List<Integer>list=new ArrayList<>();
 //        problem.sortStack(stack,stack.size(),list);
 
 //        problem.deleteMiddleElementFromStack(stack,4);
 //        System.out.println(stack);
-        System.out.println(stack);
-        problem.reverseStack(stack);
-        System.out.println(stack);
+//        System.out.println(stack);
+//        problem.reverseStack(stack);
+//        System.out.println(stack);
+
+//        Given nums array comprising 0, 1 and 2. Sort them in place.
+//        eg: [2,0,0,1,1,2,0] -> [0,0,0,1,1,2,2]
+
+//        String x = problem.generateString("a", "", 0, 10);
+//        System.out.println(x);
+//        System.out.println(problem.printFactorial(5));
+//        problem.printN(5);
+//        System.out.println(problem.reverseString("rashi", 0, ""));
+
+        int arr[] = {1, 2, 3, 4, 5, 6, 7};
+//        System.out.println(problem.occurrenceOfCharacter("rashindra", 'a', 0));
     }
 }
