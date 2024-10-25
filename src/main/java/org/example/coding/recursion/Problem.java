@@ -503,4 +503,34 @@ public class Problem {
         }
         return findMaxElement(arr, max, i + 1);
     }
+
+    public int climbStairs(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+
+    /*
+     * https://www.geeksforgeeks.org/problems/number-of-paths0926/1
+     * */
+    public int numberOfPaths1(int m, int n) {
+        if (m == 1 || n == 1) {
+            return 1;
+        }
+        return numberOfPaths1(m - 1, n) + numberOfPaths1(m, n - 1);
+    }
+
+    /*
+     * https://www.geeksforgeeks.org/problems/number-of-paths0926/1
+     * */
+    public int numberOfPaths2(int m, int n, int i, int j) {
+        if (i == m - 1 && j == n - 1) {
+            return 1;
+        }
+        if (i == m || j == n) {
+            return 0;
+        }
+        return numberOfPaths2(m, n, i + 1, j) + numberOfPaths2(m, n, i, j + 1);
+    }
 }
