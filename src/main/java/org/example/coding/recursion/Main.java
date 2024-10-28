@@ -1,5 +1,8 @@
 package org.example.coding.recursion;
 
+import org.example.coding.list.LinkedList;
+import org.example.coding.node.Node;
+
 import java.util.*;
 
 public class Main {
@@ -71,6 +74,11 @@ public class Main {
 //        System.out.println(problem.isPalindrome(125));
 //        System.out.println(problem.findMaxElement(arr, Integer.MIN_VALUE, 0));
 //        System.out.println(problem.climbStairs(4));
-        System.out.println(problem.numberOfPaths2(3, 3, 0, 0));
+//        System.out.println(problem.numberOfPaths2(3, 3, 0, 0));
+        Deque<Integer>deque=new ArrayDeque<>();
+        deque.add(89);
+        deque.add(12);
+        deque.add(23);
+        System.out.println(deque);
     }
 }

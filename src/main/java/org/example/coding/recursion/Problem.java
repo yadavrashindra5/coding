@@ -1,5 +1,7 @@
 package org.example.coding.recursion;
 
+import org.example.coding.node.Node;
+
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -532,5 +534,20 @@ public class Problem {
             return 0;
         }
         return numberOfPaths2(m, n, i + 1, j) + numberOfPaths2(m, n, i, j + 1);
+    }
+
+    /*
+     * https://leetcode.com/problems/remove-linked-list-elements/description
+     * */
+    public <T> Node<T> removeElements(Node<T> head, T val) {
+        if (head == null) {
+            return head;
+        }
+        head.next = removeElements(head.next, val);
+        if (head.data == val) {
+            return head.next;
+        } else {
+            return head;
+        }
     }
 }
