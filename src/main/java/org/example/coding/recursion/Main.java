@@ -69,16 +69,16 @@ public class Main {
 //        problem.printN(5);
 //        System.out.println(problem.reverseString("rashi", 0, ""));
 
-        int arr[] = {1, 2, 3, 1, 8, 9, 15, 10};
+        int arr[] = {1, 5, 233, 7};
 //        System.out.println(problem.occurrenceOfCharacter("rashindra", 'a', 0));
 //        System.out.println(problem.isPalindrome(125));
 //        System.out.println(problem.findMaxElement(arr, Integer.MIN_VALUE, 0));
 //        System.out.println(problem.climbStairs(4));
 //        System.out.println(problem.numberOfPaths2(3, 3, 0, 0));
-        Deque<Integer>deque=new ArrayDeque<>();
-        deque.add(89);
-        deque.add(12);
-        deque.add(23);
-        System.out.println(deque);
+//        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+//        problem.printPascal(5, result);
+//        System.out.println(result);
+
+        System.out.println(problem.subsetSum(arr));
     }
 }

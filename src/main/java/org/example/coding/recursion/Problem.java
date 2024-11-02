@@ -550,4 +550,68 @@ public class Problem {
             return head;
         }
     }
+
+    /*
+     * https://leetcode.com/problems/pascals-triangle/description/
+     * */
+    public ArrayList<Integer> printPascal(int n, ArrayList<ArrayList<Integer>> result) {
+        if (n == 1) {
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(1);
+            result.add(list);
+            return list;
+        }
+        ArrayList<Integer> prevRow = printPascal(n - 1, result);
+        ArrayList<Integer> currentRow = new ArrayList<>();
+        currentRow.add(1);
+        for (int i = 1; i < prevRow.size(); ++i) {
+            currentRow.add(prevRow.get(i - 1) + prevRow.get(i));
+        }
+        currentRow.add(1);
+        result.add(currentRow);
+        return currentRow;
+    }
+
+    /*
+     * https://www.naukri.com/code360/problems/magic-index_1199229
+     * */
+    public int magicIndex(ArrayList<Integer> list, int n, int i) {
+        if (i == n) {
+            return -1;
+        }
+        if (list.get(i) == i) {
+            return i;
+        }
+        return magicIndex(list, n, i + 1);
+    }
+
+    public int sumOfList(ArrayList<Integer> list) {
+        int sum = 0;
+        for (int num : list) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    public void generateSubset(int nums[], int i, int n, ArrayList<Integer> currentSubset, ArrayList<Integer> result) {
+        if (i == n) {
+            result.add(sumOfList(currentSubset));
+            return;
+        }
+
+        currentSubset.add(nums[i]);
+        generateSubset(nums, i + 1, n, currentSubset, result);
+        currentSubset.remove(currentSubset.size() - 1);
+        generateSubset(nums, i + 1, n, currentSubset, result);
+    }
+
+    /*
+     * https://www.naukri.com/code360/problems/subset-sum_3843086
+     * */
+    public ArrayList<Integer> subsetSum(int[] nums) {
+        ArrayList<Integer> result = new ArrayList<>();
+        generateSubset(nums, 0, nums.length, new ArrayList<>(), result);
+        Collections.sort(result); // Sort the result if needed
+        return result;
+    }
 }
