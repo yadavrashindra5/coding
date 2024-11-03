@@ -614,4 +614,67 @@ public class Problem {
         Collections.sort(result); // Sort the result if needed
         return result;
     }
+
+    /*
+     * https://www.naukri.com/code360/problems/encode-the-message_699836
+     * */
+    public void encodeHelper(String message, int index, StringBuilder result) {
+        int n = message.length();
+
+        // Base case: if index reaches the end of the string, we're done
+        if (index >= n) {
+            return;
+        }
+
+        // Get the current character and initialize count
+        char currentChar = message.charAt(index);
+        int count = 0;
+
+        // Count consecutive occurrences of currentChar starting from index
+        while (index < n && message.charAt(index) == currentChar) {
+            count++;
+            index++;
+        }
+
+        // Append currentChar and its count to result
+        result.append(currentChar).append(count);
+
+        // Recursive call to process the rest of the string
+        encodeHelper(message, index, result);
+    }
+
+    public void prints(int n, int k, List<Integer> result) {
+        if (n == 0 || n < 0) {
+            result.add(n);
+            return;
+        }
+        result.add(n);
+        prints(n - k, k, result);
+        result.add(n);
+    }
+
+    /*
+     *
+     * */
+    public List<Integer> printSeries(int n, int k) {
+        List<Integer> list = new ArrayList<>();
+        prints(n, k, list);
+        return list;
+    }
+
+    /*
+    *https://www.naukri.com/code360/problems/remove-duplicates-recursively_5849
+    * */
+    public static String removeConsecutiveDuplicates(String s) {
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        String result = String.valueOf(s.charAt(0));
+        for (int i = 1; i < s.length(); ++i) {
+            if (s.charAt(i) != s.charAt(i - 1)) {
+                result += s.charAt(i);
+            }
+        }
+        return result;
+    }
 }

@@ -78,7 +78,13 @@ public class Main {
 //        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 //        problem.printPascal(5, result);
 //        System.out.println(result);
-
-        System.out.println(problem.subsetSum(arr));
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("r");
+        stringBuilder.append("a");
+        stringBuilder.append("s");
+        stringBuilder.append("h");
+        stringBuilder.append("i");
+        System.out.println(stringBuilder.length());
+        System.out.println(problem.removeConsecutiveDuplicates("xxxyyyzwwzzz"));
     }
 }
