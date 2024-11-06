@@ -663,8 +663,8 @@ public class Problem {
     }
 
     /*
-    *https://www.naukri.com/code360/problems/remove-duplicates-recursively_5849
-    * */
+     *https://www.naukri.com/code360/problems/remove-duplicates-recursively_5849
+     * */
     public static String removeConsecutiveDuplicates(String s) {
         if (s == null || s.length() == 0) {
             return s;
@@ -676,5 +676,21 @@ public class Problem {
             }
         }
         return result;
+    }
+
+    public String removeString(String s, int i, String result) {
+        // Base case: if we reach the end of the string, return the result
+        if (i == s.length()) {
+            return result;
+        }
+
+        // Append the current character only if it's the start or different from the previous character
+        if (result.isEmpty() || result.charAt(result.length() - 1) != s.charAt(i)) {
+            result += s.charAt(i);
+        }
+
+        // Recursive call with the next index
+        return removeString(s, i + 1, result);
+
     }
 }

@@ -84,7 +84,7 @@ public class Main {
         stringBuilder.append("s");
         stringBuilder.append("h");
         stringBuilder.append("i");
-        System.out.println(stringBuilder.length());
-        System.out.println(problem.removeConsecutiveDuplicates("xxxyyyzwwzzz"));
+        String result = problem.removeString("aaaaa", 0, "");
+        System.out.println(result);
     }
 }
