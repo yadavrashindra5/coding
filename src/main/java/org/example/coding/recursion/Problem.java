@@ -691,6 +691,28 @@ public class Problem {
 
         // Recursive call with the next index
         return removeString(s, i + 1, result);
+    }
 
+    public void insertIntoStack(Stack<Integer> stack, int element) {
+        if (stack.isEmpty()) {
+            stack.push(element);
+            return;
+        }
+        if (stack.peek() <= element) {
+            stack.push(element);
+            return;
+        }
+        int popElement = stack.pop();
+        insertIntoStack(stack, element);
+        stack.push(popElement);
+    }
+
+    public void sortStack(Stack<Integer> stack) {
+        if (stack.isEmpty()) {
+            return;
+        }
+        int popElement = stack.pop();
+        sortStack(stack);
+        insertIntoStack(stack, popElement);
     }
 }

@@ -1,9 +1,6 @@
 package org.example.coding.recursion;
 
-import org.example.coding.list.LinkedList;
-import org.example.coding.node.Node;
-
-import java.util.*;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -60,31 +57,14 @@ public class Main {
 //        problem.reverseStack(stack);
 //        System.out.println(stack);
 
-//        Given nums array comprising 0, 1 and 2. Sort them in place.
-//        eg: [2,0,0,1,1,2,0] -> [0,0,0,1,1,2,2]
-
-//        String x = problem.generateString("a", "", 0, 10);
-//        System.out.println(x);
-//        System.out.println(problem.printFactorial(5));
-//        problem.printN(5);
-//        System.out.println(problem.reverseString("rashi", 0, ""));
-
-        int arr[] = {1, 5, 233, 7};
-//        System.out.println(problem.occurrenceOfCharacter("rashindra", 'a', 0));
-//        System.out.println(problem.isPalindrome(125));
-//        System.out.println(problem.findMaxElement(arr, Integer.MIN_VALUE, 0));
-//        System.out.println(problem.climbStairs(4));
-//        System.out.println(problem.numberOfPaths2(3, 3, 0, 0));
-//        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-//        problem.printPascal(5, result);
-//        System.out.println(result);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("r");
-        stringBuilder.append("a");
-        stringBuilder.append("s");
-        stringBuilder.append("h");
-        stringBuilder.append("i");
-        String result = problem.removeString("aaaaa", 0, "");
-        System.out.println(result);
+        Stack<Integer> stack = new Stack<>();
+        stack.push(23);
+        stack.push(43);
+        stack.push(1);
+        stack.push(100);
+        stack.push(50);
+        System.out.println(stack);
+        problem.sortStack(stack);
+        System.out.println(stack);
     }
 }
