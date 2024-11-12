@@ -715,4 +715,20 @@ public class Problem {
         sortStack(stack);
         insertIntoStack(stack, popElement);
     }
+
+    public int recursiveSubset(int arr[], int i, int n, int target) {
+        if (target == 0) {
+            return 1;
+        }
+        if (i == n || target < 0) {
+            return 0;
+        }
+        int include = recursiveSubset(arr, i + 1, n, target - arr[i]);
+        int exclude = recursiveSubset(arr, i + 1, n, target);
+        return include + exclude;
+    }
+
+    public int findWays(int arr[], int target) {
+        return recursiveSubset(arr, 0, arr.length, target) % 1000000007;
+    }
 }
