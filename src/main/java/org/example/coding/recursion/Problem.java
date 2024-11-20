@@ -731,4 +731,32 @@ public class Problem {
     public int findWays(int arr[], int target) {
         return recursiveSubset(arr, 0, arr.length, target) % 1000000007;
     }
+    public boolean validParenthesis(String parenthesis, int balance, int i) {
+        if (i == parenthesis.length()) {
+            return true;
+        }
+        if (balance < 0) {
+            return false;
+        }
+        char currentChar = parenthesis.charAt(i);
+        if (currentChar == '(') {
+            balance++;
+        } else {
+            balance--;
+        }
+        return validParenthesis(parenthesis, balance, i + 1);
+    }
+
+    public void generateValidateParenthesis(int n, int open, int close, String result) {
+        if (result.length() == 2 * n) {
+            System.out.println(result);
+            return;
+        }
+        if (open < n) {
+            generateValidateParenthesis(n, open + 1, close, result + "(");
+        }
+        if (close < open) {
+            generateValidateParenthesis(n, open, close + 1, result + ")");
+        }
+    }
 }
