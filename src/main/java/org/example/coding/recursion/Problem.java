@@ -731,6 +731,7 @@ public class Problem {
     public int findWays(int arr[], int target) {
         return recursiveSubset(arr, 0, arr.length, target) % 1000000007;
     }
+
     public boolean validParenthesis(String parenthesis, int balance, int i) {
         if (i == parenthesis.length()) {
             return true;
@@ -758,5 +759,58 @@ public class Problem {
         if (close < open) {
             generateValidateParenthesis(n, open, close + 1, result + ")");
         }
+    }
+
+    public List<Integer> diffWaysToCompute(String expression) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < expression.length(); ++i) {
+            char currentChar = expression.charAt(i);
+            if (currentChar == '-' || currentChar == '+' || currentChar == '*') {
+                List<Integer> left = diffWaysToCompute(expression.substring(0, i));
+                List<Integer> right = diffWaysToCompute(expression.substring(i + 1));
+                left.stream().forEach(ld -> {
+                    right.forEach(rd -> {
+                        if (currentChar == '-') {
+                            list.add(ld - rd);
+                        } else if (currentChar == '+') {
+                            list.add(ld + rd);
+                        } else if (currentChar == '*') {
+                            list.add(ld * rd);
+                        }
+                    });
+                });
+            }
+        }
+        if (list.isEmpty()) {
+            list.add(Integer.parseInt(expression));
+        }
+        return list;
+    }
+
+    public String decodeString(String s) {
+        Stack<String> stringStack = new Stack<>();
+        Stack<Integer> numberStack = new Stack<>();
+        StringBuilder currentString = new StringBuilder();
+        int number = 0;
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                number = number * 10 + (c - '0');
+            } else if (c == '[') {
+                numberStack.push(number);
+                stringStack.push(currentString.toString());
+                currentString = new StringBuilder();
+                number = 0;
+            } else if (c == ']') {
+                int repeat = numberStack.pop();
+                StringBuilder temp = new StringBuilder(stringStack.pop());
+                for (int i = 0; i < repeat; ++i) {
+                    temp.append(currentString);
+                }
+                currentString = temp;
+            } else {
+                currentString.append(c);
+            }
+        }
+        return currentString.toString();
     }
 }
