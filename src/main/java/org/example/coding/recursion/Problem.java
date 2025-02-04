@@ -5,6 +5,7 @@ import org.example.coding.node.Node;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Problem {
     public void printNatural(int n, int i) {
@@ -812,5 +813,141 @@ public class Problem {
             }
         }
         return currentString.toString();
+    }
+
+    public boolean winner(int nums[], int i, int j, int score1, int score2, boolean isPlayer1) {
+        if (j < i) {
+            if (score1 < score2) {
+                return false;
+            }
+            return true;
+        }
+        if (isPlayer1) {
+            if (nums[i] > nums[j]) {
+                score1 += nums[i];
+                return winner(nums, i + 1, j, score1, score2, false);
+            } else {
+                score1 += nums[j];
+                return winner(nums, i, j - 1, score1, score2, false);
+            }
+        } else {
+            if (nums[i] > nums[j]) {
+                score2 += nums[i];
+                return winner(nums, i + 1, j, score1, score2, true);
+            } else {
+                score2 += nums[j];
+                return winner(nums, i, j - 1, score1, score2, true);
+            }
+        }
+    }
+
+    public boolean predictTheWinner(int nums[]) {
+        return winner(nums, 0, nums.length - 1, 0, 0, true);
+    }
+
+    public int remain(List<Integer> list, boolean fromStart) {
+        if (list.size() == 1) {
+            return list.get(0);
+        }
+        List<Integer> list1 = new ArrayList<>();
+        if (fromStart) {
+            int i = 0;
+            while (i < list.size()) {
+                if (i % 2 != 0) {
+                    list1.add(list.get(i));
+                }
+                i++;
+            }
+        } else {
+            Collections.reverse(list);
+            int i = 0;
+            while (i < list.size()) {
+                if (i % 2 != 0) {
+                    list1.add(list.get(i));
+                }
+                i++;
+            }
+            Collections.reverse(list1);
+        }
+        return remain(list1, !fromStart);
+    }
+
+    public int lastRemaining(int n) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= n; ++i) {
+            list.add(i);
+        }
+        return remain(list, true);
+    }
+
+    public int[] plusOne(int[] digits) {
+        int modulus = 1, i = digits.length - 1;
+        do {
+            int ele = digits[i] + modulus;
+            modulus = ele / 10;
+            digits[i] = ele % 10;
+            i--;
+        } while (modulus != 0 && i >= 0);
+        if (modulus != 0) {
+            LinkedList<Integer> collect = Arrays.stream(digits).boxed().collect(Collectors.toCollection(LinkedList::new));
+            collect.addFirst(modulus);
+            digits = collect.stream().mapToInt(Integer::intValue).toArray();
+        }
+        return digits;
+    }
+
+    public int singleNumber(int[] nums) {
+        //Approach 1
+//        Map<Integer, Integer> map = new HashMap<>();
+//        for (int i = 0; i < nums.length; ++i) {
+//            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+//        }
+//        return findKeyWithSingleOccurence(map);
+
+        //Approach 2
+        int singleRepeatedEle = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            singleRepeatedEle ^= nums[i];
+        }
+        return singleRepeatedEle;
+    }
+
+    public int findKeyWithSingleOccurence(Map<Integer, Integer> map) {
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
+        return 0;
+    }
+
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < nums1.length; ++i) {
+            map.put(nums1[i], map.getOrDefault(nums1[i], 0) + 1);
+        }
+
+        for (int i = 0; i < nums2.length; ++i) {
+            int currentEle = nums2[i];
+            if (map.containsKey(currentEle) && map.get(currentEle) != 0) {
+                list.add(currentEle);
+                map.put(currentEle, map.getOrDefault(currentEle, 0) - 1);
+            }
+        }
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public int maxAscendingSum(int[] nums) {
+//        3,6,10,1,8,9,9,8,9
+        int ans = nums[0], curr = nums[0];
+        int j = 1;
+        while (j < nums.length) {
+            curr = nums[j] > nums[j - 1] ? curr + nums[j] : nums[j];
+            ans = Math.max(curr, ans);
+            j++;
+        }
+        return ans;
     }
 }
