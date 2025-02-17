@@ -16,6 +16,10 @@ public class Main {
 //        System.out.println(problem.diffWaysToCompute("21-1-1"));
 //        System.out.println(problem.decodeString("3[a]2[bc]"));
 //        problem.plusOne(new int[]{9,9,9,9});
-        System.out.println(problem.maxAscendingSum(new int[]{3,6,10,1,8,9,9,8,9}));
+//        int matrix[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//        int result[][] = problem.transpose(matrix);
+//        for (int i = 0; i < result.length; ++i) {
+//            System.out.println(Arrays.toString(result[i]));
+//        }
     }
 }

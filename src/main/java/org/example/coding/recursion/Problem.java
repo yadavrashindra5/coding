@@ -950,4 +950,72 @@ public class Problem {
         }
         return ans;
     }
+
+    public int findIndexOfElement(int nums2[], int element) {
+        for (int i = 0; i < nums2.length; ++i) {
+            if (nums2[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int findNextGreater(int nums2[], int greaterThan, int startIndex) {
+        while (startIndex < nums2.length && !(nums2[startIndex] > greaterThan)) {
+            startIndex++;
+        }
+        return startIndex >= nums2.length ? -1 : nums2[startIndex];
+    }
+
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int result[] = new int[nums1.length];
+        for (int i = 0; i < nums1.length; ++i) {
+            int currentEle = nums1[i];
+            int index = findIndexOfElement(nums2, currentEle);
+            result[i] = findNextGreater(nums2, currentEle, index);
+        }
+        return result;
+    }
+
+    public void reverse(int row[]) {
+        int i = 0, j = row.length - 1;
+        while (i < j) {
+            int temp = row[i];
+            row[i] = row[j];
+            row[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    public void invert(int row[]) {
+        for (int i = 0; i < row.length; ++i) {
+            if (row[i] == 0) {
+                row[i] = 1;
+            } else {
+                row[i] = 0;
+            }
+        }
+    }
+
+    public int[][] flipAndInvertImage(int[][] image) {
+        for (int i = 0; i < image.length; ++i) {
+            int row[] = image[i];
+            reverse(row);
+            invert(row);
+        }
+        return image;
+    }
+
+    public int[][] transpose(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int trasponseMatrix[][] = new int[col][row];
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                trasponseMatrix[j][i] = matrix[i][j];
+            }
+        }
+        return trasponseMatrix;
+    }
 }
