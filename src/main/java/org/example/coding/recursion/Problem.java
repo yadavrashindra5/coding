@@ -1018,4 +1018,19 @@ public class Problem {
         }
         return trasponseMatrix;
     }
+
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int maxConsecutive = 0, count = 0, i = 0;
+        while (i < nums.length) {
+            if (nums[i] == 1) {
+                count++;
+            } else {
+                maxConsecutive = Math.max(maxConsecutive, count);
+                count = 0;
+            }
+            i++;
+        }
+        maxConsecutive = Math.max(maxConsecutive, count);
+        return maxConsecutive;
+    }
 }

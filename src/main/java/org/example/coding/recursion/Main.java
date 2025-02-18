@@ -12,7 +12,7 @@ public class Main {
 //        problem.generateValidateParenthesis(3, 0, 0, "");
 //        player1=7+5
 //        player2=233+1
-        int arr[] = {1};
+        int arr[] = {1, 1, 0, 1, 1, 1};
 //        System.out.println(problem.diffWaysToCompute("21-1-1"));
 //        System.out.println(problem.decodeString("3[a]2[bc]"));
 //        problem.plusOne(new int[]{9,9,9,9});
@@ -21,5 +21,6 @@ public class Main {
 //        for (int i = 0; i < result.length; ++i) {
 //            System.out.println(Arrays.toString(result[i]));
 //        }
+        System.out.println(problem.findMaxConsecutiveOnes(arr));
     }
 }
