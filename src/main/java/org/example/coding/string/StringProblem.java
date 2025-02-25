@@ -112,9 +112,9 @@ public class StringProblem {
     }
 
     /*
-    * https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box
-    * solve this problem using cummulative approach
-    * */
+     * https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box
+     * solve this problem using cummulative approach
+     * */
 
     public int[] minOperations(String boxes) {
         int leftCummulative[] = new int[boxes.length()];
@@ -143,6 +143,42 @@ public class StringProblem {
             prefixsum += leftCummulative[i];
             suffix -= rightCummulative[i];
         }
+        return result;
+    }
+
+    public int finalValueAfterOperations(String[] operations) {
+        int valueAfterOperations = 0;
+        for (int i = 0; i < operations.length; ++i) {
+            String value = operations[i];
+            switch (value) {
+                case "++X":
+                    valueAfterOperations += 1;
+                    break;
+                case "X++":
+                    valueAfterOperations += 1;
+                    break;
+                case "--X":
+                    valueAfterOperations -= 1;
+                    break;
+                case "X--":
+                    valueAfterOperations -= 1;
+                    break;
+            }
+        }
+        return valueAfterOperations;
+    }
+
+    public String defangIPaddr(String address) {
+        return String.join("[.]", address.split("\\."));
+    }
+
+    public String convertDateToBinary(String date) {
+        String splitDate[] = date.split("\\-");
+        for (int i = 0; i < splitDate.length; ++i) {
+            splitDate[i] = Integer.toBinaryString(Integer.valueOf(splitDate[i]));
+        }
+
+        String result = String.join("-", splitDate);
         return result;
     }
 }
