@@ -349,20 +349,21 @@ public class ArrayProblem {
         return true;
 
     }
+
     public boolean isNStraightHand(int[] hand, int groupSize) {
-        int sizeOfHand=hand.length;
-        if(sizeOfHand%groupSize!=0){
+        int sizeOfHand = hand.length;
+        if (sizeOfHand % groupSize != 0) {
             return false;
         }
         Arrays.sort(hand);
-        List<Integer> list= Arrays.stream(hand).boxed().collect(Collectors.toList());
-        int totalArray=sizeOfHand/groupSize;
-        for(int i=0;i<totalArray;++i){
-            Stack<Integer>list1=new Stack<>();
-            for(int j=0;j<list.size();++j){
-                if(list1.size()!=groupSize) {
-                    if(!list1.contains(list.get(j))){
-                        if((list.get(j)-list1.peek())!=1){
+        List<Integer> list = Arrays.stream(hand).boxed().collect(Collectors.toList());
+        int totalArray = sizeOfHand / groupSize;
+        for (int i = 0; i < totalArray; ++i) {
+            Stack<Integer> list1 = new Stack<>();
+            for (int j = 0; j < list.size(); ++j) {
+                if (list1.size() != groupSize) {
+                    if (!list1.contains(list.get(j))) {
+                        if ((list.get(j) - list1.peek()) != 1) {
                             return false;
                         }
                         list1.add(list.get(j));
@@ -373,39 +374,83 @@ public class ArrayProblem {
             }
             System.out.println(list1);
         }
-        if(list.size()!=0){
+        if (list.size() != 0) {
             return false;
         }
 
         return true;
     }
+
     /*
-    * 974. Subarray Sums Divisible by K
-    *
-    * Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.A subarray is a contiguous part of an array.
-    *
-    *  Example 1:
-    * Input: nums = [4,5,0,-2,-3,1], k = 5
-    * Output: 7
-    * Explanation: There are 7 subarrays with a sum divisible by k = 5:
-    * [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
-    *
-    * */
+     * 974. Subarray Sums Divisible by K
+     *
+     * Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.A subarray is a contiguous part of an array.
+     *
+     *  Example 1:
+     * Input: nums = [4,5,0,-2,-3,1], k = 5
+     * Output: 7
+     * Explanation: There are 7 subarrays with a sum divisible by k = 5:
+     * [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
+     *
+     * */
     public int subarraysDivByK(int[] nums, int k) {
 
-        int i=0,j=nums.length-1,result=0,sum=0;
-        while (i<=j){
-            if(i==j){
-                sum+=nums[i];
-                if(sum%k==0){
-                    result+=1;
+        int i = 0, j = nums.length - 1, result = 0, sum = 0;
+        while (i <= j) {
+            if (i == j) {
+                sum += nums[i];
+                if (sum % k == 0) {
+                    result += 1;
                 }
-            }else if(sum<k){
-                sum+=nums[i];
+            } else if (sum < k) {
+                sum += nums[i];
                 j++;
             }
         }
-
         return 0;
+    }
+
+    public boolean isMatchingPair(char open, char close) {
+        switch (open) {
+            case '(':
+                return close == ')';
+            case '{':
+                return close == '}';
+            case '[':
+                return close == ']';
+            default:
+                return false;
+        }
+    }
+
+    public boolean processBracker(char c, Stack<Character> stack) {
+        switch (c) {
+            case '(':
+            case '{':
+            case '[':
+                stack.push(c);
+                break;
+            default:
+                if (stack.isEmpty() || !isMatchingPair(stack.peek(), c)) {
+                    return false;
+                }
+                stack.pop();
+        }
+        return true;
+    }
+
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); ++i) {
+            char currentIndexChar = s.charAt(i);
+            boolean isProcess = processBracker(currentIndexChar, stack);
+            if (!isProcess) {
+                return false;
+            }
+        }
+        if (!stack.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }
