@@ -181,4 +181,36 @@ public class StringProblem {
         String result = String.join("-", splitDate);
         return result;
     }
+
+    public boolean isPalidromeString(String str) {
+        int i = 0, j = str.length() - 1;
+        while (i < j) {
+            char charAtI = str.charAt(i);
+            char charAtJ = str.charAt(j);
+            if (!(charAtI == charAtJ)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    public String longestPalindrome(String s) {
+        if (s.length() == 1) {
+            return s;
+        }
+        int stringSize = s.length();
+        String result = "";
+        for (int i = 0; i < stringSize; ++i) {
+            for (int j = i; j < stringSize; ++j) {
+                String subStr = s.substring(i, j + 1);
+                boolean palidromeString = isPalidromeString(subStr);
+                if (palidromeString && subStr.length() > result.length()) {
+                    result = subStr;
+                }
+            }
+        }
+        return result;
+    }
 }
