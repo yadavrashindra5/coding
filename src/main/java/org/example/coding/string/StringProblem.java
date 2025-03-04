@@ -213,4 +213,15 @@ public class StringProblem {
         }
         return result;
     }
+
+    public int minPartitions(String n) {
+        int result = Integer.MIN_VALUE;
+        for (int i = 0; i < n.length(); ++i) {
+            int currentNumber = Character.getNumericValue(n.charAt(i));
+            if (currentNumber > result) {
+                result = currentNumber;
+            }
+        }
+        return result;
+    }
 }
