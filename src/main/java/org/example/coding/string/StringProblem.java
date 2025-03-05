@@ -1,6 +1,8 @@
 package org.example.coding.string;
 
-import java.util.Arrays;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class StringProblem {
 
@@ -223,5 +225,51 @@ public class StringProblem {
             }
         }
         return result;
+    }
+
+    public boolean isVowelChar(char c) {
+        return switch (c) {
+            case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' -> true;
+            default -> false;
+        };
+    }
+
+    public Map<Integer, Character> getVowelAsciiMap(String s) {
+        Map<Integer, Character> map = new HashMap<>();
+        for (int i = 0; i < s.length(); ++i) {
+            char charAtCurrentIndex = s.charAt(i);
+            if (isVowelChar(charAtCurrentIndex)) {
+                map.put((int) (char) charAtCurrentIndex, charAtCurrentIndex);
+            }
+        }
+        return map;
+    }
+
+    public String sortVowels(String s) {
+        List<Integer> list = new ArrayList<>();
+        Map<Integer, Character> vowelAsciiMap = getVowelAsciiMap(s);
+        System.out.println(vowelAsciiMap);
+        return "";
+    }
+
+    public void generateBinaryString(int n, String binaryString, List<String> binaryStringList) {
+        if (binaryString.length() == n) {
+            binaryStringList.add(binaryString);
+            return;
+        }
+        generateBinaryString(n, binaryString + "0", binaryStringList);
+        generateBinaryString(n, binaryString + "1", binaryStringList);
+    }
+
+    public String findDifferentBinaryString(String[] nums) {
+        List<String> binaryStringCollection = new ArrayList<>();
+        generateBinaryString(nums[0].length(), "", binaryStringCollection);
+        List<String> collect = Arrays.stream(nums).collect(Collectors.toList());
+        for (int i = 0; i < binaryStringCollection.size(); ++i) {
+            if (!collect.contains(binaryStringCollection.get(i))) {
+                return binaryStringCollection.get(i);
+            }
+        }
+        return "";
     }
 }

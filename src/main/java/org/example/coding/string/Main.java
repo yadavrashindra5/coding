@@ -8,6 +8,8 @@ public class Main {
         StringProblem stringProblem = new StringProblem();
 //        System.out.println(stringProblem.convertDateToBinary("2080-02-29"));
 //        System.out.println(stringProblem.longestPalindrome("cbbd"));
-        System.out.println(stringProblem.minPartitions("27346209830709182346"));
+        List<String> binaryListString = new ArrayList<>();
+        stringProblem.generateBinaryString(1, "", binaryListString);
+        System.out.println(binaryListString);
     }
 }
