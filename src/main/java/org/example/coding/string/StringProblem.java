@@ -272,4 +272,66 @@ public class StringProblem {
         }
         return "";
     }
+
+    public String findSmallestString(String[] strs) {
+        int lengthOfString = Integer.MAX_VALUE;
+        String result = "";
+        for (int i = 0; i < strs.length; ++i) {
+            if (strs[i].length() < lengthOfString) {
+                lengthOfString = strs[i].length();
+                result = strs[i];
+            }
+        }
+        return result;
+    }
+
+    public String findCommon(String str1, String str2) {
+        if (str1.startsWith(str2)) {
+            return str2;
+        }
+        String commonPrefix = str2;
+        int i = str2.length() - 1;
+        while (i >= 0) {
+            commonPrefix = commonPrefix.substring(0, i);
+            if (str1.startsWith(commonPrefix)) {
+                return commonPrefix;
+            }
+            i--;
+        }
+        return commonPrefix;
+    }
+
+    public String longestCommonPrefix(String[] strs) {
+        String commonPrefix = findSmallestString(strs);
+        for (int i = 0; i < strs.length; ++i) {
+            commonPrefix = findCommon(strs[i], commonPrefix);
+        }
+        return commonPrefix;
+    }
+    public int compress(char[] chars) {
+        int n = chars.length;
+        int write = 0, read = 0;
+
+        while (read < n) {
+            char currentChar = chars[read];
+            int count = 0;
+
+            // Count the number of occurrences
+            while (read < n && chars[read] == currentChar) {
+                read++;
+                count++;
+            }
+
+            // Write the character
+            chars[write++] = currentChar;
+
+            // If count > 1, write the digits of the count
+            if (count > 1) {
+                for (char c : String.valueOf(count).toCharArray()) {
+                    chars[write++] = c;
+                }
+            }
+        }
+        return write; // The length of compressed string
+    }
 }

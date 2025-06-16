@@ -1,15 +1,14 @@
 package org.example.coding.string;
 
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         StringProblem stringProblem = new StringProblem();
-//        System.out.println(stringProblem.convertDateToBinary("2080-02-29"));
-//        System.out.println(stringProblem.longestPalindrome("cbbd"));
-        List<String> binaryListString = new ArrayList<>();
-        stringProblem.generateBinaryString(1, "", binaryListString);
-        System.out.println(binaryListString);
+        char chars[] = {'a', 'a', 'b', 'b'};
+        int lengthOfCompressString = stringProblem.compress(chars);
+        System.out.println(lengthOfCompressString);
     }
 }

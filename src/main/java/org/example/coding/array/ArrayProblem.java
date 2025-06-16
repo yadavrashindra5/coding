@@ -453,4 +453,55 @@ public class ArrayProblem {
         }
         return true;
     }
+
+    public List<String> summaryRanges(int[] nums) {
+        List<String> result = new ArrayList<>();
+
+        int startPoint = -1, prev = nums[0], i = 0;
+        while (i < nums.length) {
+            if (startPoint == -1) {
+                startPoint = nums[i];
+                prev = nums[i];
+                i++;
+            } else if ((prev + 1) != nums[i]) {
+                if (startPoint == prev) {
+                    result.add(String.valueOf(prev));
+                } else {
+                    result.add(startPoint + "->" + prev);
+                }
+                startPoint = -1;
+            } else {
+                prev = nums[i];
+                i++;
+            }
+        }
+        if (startPoint == prev) {
+            result.add(String.valueOf(prev));
+        } else {
+            result.add(startPoint + "->" + prev);
+        }
+        return result;
+    }
+
+    public int missingNumber2(int[] nums) {
+        int i = 0, n = nums.length;
+        while (i < n) {
+            if (nums[i] == n) {
+                i++;
+                continue;
+            }
+            nums[Math.abs(nums[i])] = -nums[Math.abs(nums[i])];
+            i++;
+        }
+        System.out.println(Arrays.toString(nums));
+
+        int j = 0;
+        while (j < n) {
+            if (nums[j] > 0) {
+                return j;
+            }
+            j++;
+        }
+        return j;
+    }
 }
