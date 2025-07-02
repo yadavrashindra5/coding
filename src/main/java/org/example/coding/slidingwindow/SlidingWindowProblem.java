@@ -204,4 +204,91 @@ public class SlidingWindowProblem {
         }
         return result;
     }
+
+    public int countOccurrenceAnagram(String str, String ptr) {
+        int k = ptr.length();
+
+        // Build frequency map for pattern
+        Map<Character, Integer> patternMap = buildFrequencyMap(ptr);
+
+        // Get all sliding windows of size 'k' from the string
+        List<Map<Character, Integer>> windowList = generateSlidingWindowMaps(str, k);
+
+        // Compare each window's frequency map to the pattern's map
+        int count = countMatchingWindows(windowList, patternMap);
+
+        System.out.println(count);
+        return count;
+    }
+
+    // Build frequency map for a given string
+    private Map<Character, Integer> buildFrequencyMap(String s) {
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (char ch : s.toCharArray()) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+        }
+        return freqMap;
+    }
+
+    // Generate list of frequency maps for each window in the string
+    private List<Map<Character, Integer>> generateSlidingWindowMaps(String str, int k) {
+        List<Map<Character, Integer>> windowList = new ArrayList<>();
+        Map<Character, Integer> windowMap = new HashMap<>();
+        int i = 0, j = 0;
+
+        while (j < str.length()) {
+            // Add current character to window map
+            char ch = str.charAt(j);
+            windowMap.put(ch, windowMap.getOrDefault(ch, 0) + 1);
+
+            // If window size reached
+            if ((j - i + 1) == k) {
+                windowList.add(new HashMap<>(windowMap)); // snapshot
+
+                // Remove leftmost character
+                char removeChar = str.charAt(i);
+                windowMap.put(removeChar, windowMap.get(removeChar) - 1);
+                if (windowMap.get(removeChar) == 0) {
+                    windowMap.remove(removeChar);
+                }
+
+                i++;
+            }
+            j++;
+        }
+
+        return windowList;
+    }
+
+    // Count how many windows match the pattern's frequency map
+    private int countMatchingWindows(List<Map<Character, Integer>> windowList, Map<Character, Integer> patternMap) {
+        int count = 0;
+        for (Map<Character, Integer> windowMap : windowList) {
+            if (windowMap.equals(patternMap)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public List<Integer> maximumOfSubarray(int arr[], int n, int k) {
+        int i = 0, j = 0;
+        Deque<Integer> deque = new ArrayDeque<>();
+        List<Integer> list = new ArrayList<>();
+        while (j < n) {
+            while (!deque.isEmpty() && deque.getFirst() < arr[j]) {
+                deque.removeFirst();
+            }
+            deque.addLast(arr[j]);
+            if ((j - i + 1) == k) {
+                list.add(deque.peek());
+                if (arr[i] == deque.peek()) {
+                    deque.removeFirst();
+                }
+                i++;
+            }
+            j++;
+        }
+        return list;
+    }
 }

@@ -1,9 +1,6 @@
 package org.example.coding.slidingwindow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,5 +18,7 @@ public class Main {
 //        strings.forEach(s1 -> s.maximumLengthSubstring(s1));
 
 //        s.findFirstNegInWindow(new int[]{12, -1, -7, 8, -15, 30, 16, 28}, 3);
+        List<Integer> list = s.maximumOfSubarray(new int[]{1, 3, -1, 5, 3, 6, 7}, 7, 3);
+        System.out.println(list);
     }
 }
