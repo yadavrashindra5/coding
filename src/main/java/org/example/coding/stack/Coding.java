@@ -267,31 +267,6 @@ public class Coding {
         }
     }
 
-//    public static int minCost(String colors, int[] neededTime) {
-//        Stack<Integer>stack=new Stack<>();
-//        int count=0;
-//        for(int i=0;i<colors.length();++i){
-//            if(stack.isEmpty()){
-//                stack.push(i);
-//            }else{
-//                int peek=stack.peek();
-//                if(colors.charAt(peek)==colors.charAt(i)){
-//                    if(neededTime[peek]<neededTime[i]){
-//                        stack.pop();
-//                        stack.push(i);
-//                        count+=neededTime[peek];
-//                    }else{
-//                        count+=neededTime[i];
-//                    }
-//                }
-//                else {
-//                    stack.push(i);
-//                }
-//            }
-//        }
-//        return count;
-//    }
-
     public static int minCost(String colors, int[] neededTime) {
         int prev = -1, next = -1;
         int count = 0;
@@ -362,22 +337,42 @@ public class Coding {
         return list;
     }
 
+
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            switch (c) {
+                case '(', '{', '[':
+                    stack.push(c);
+                    break;
+                case ')':
+                    char currentChar = stack.pop();
+                    if (currentChar != '(') {
+                        return false;
+                    }
+                    break;
+                case '}':
+                    char currentChar1 = stack.pop();
+                    if (currentChar1 != '{') {
+                        return false;
+                    }
+                    break;
+                case ']':
+                    char currentChar2 = stack.pop();
+                    if (currentChar2 != '[') {
+                        return false;
+                    }
+                    break;
+            }
+        }
+        return stack.isEmpty();
+    }
+
     /**
      * The entry point of application.
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
-//        minRemoveToMakeValid("lee(t(c)o)de)");
-//        (((((()*)(*)*))())())
-//        int students[]={1,1,0,0};
-//        int sandwiches[]={0,1,0,1};
-//        System.out.println(countStudents(students,sandwiches));
-//        int deck[]={17,13,11,2,3,5,7};
-//        System.out.println(Arrays.toString(deckRevealedIncreasing(deck)));
-//        Deque<Integer>deque=new ArrayDeque<>();
-//        deque.add(12);
-//        deque.add(11);
-//        deque.add(45);
     }
 }
