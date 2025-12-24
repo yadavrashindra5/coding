@@ -3,6 +3,7 @@ package org.example.coding.stack;
 import com.sun.tools.jconsole.JConsoleContext;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * The type Coding.
@@ -368,11 +369,34 @@ public class Coding {
         return stack.isEmpty();
     }
 
+    public static String removeDuplicate(String s) {
+        Stack<Character> stack = new Stack();
+        int i = 0;
+        while (i < s.length()) {
+            if (!stack.isEmpty() && stack.peek() == s.charAt(i)) {
+                char peek = stack.peek();
+                while (i < s.length() && peek == s.charAt(i)) {
+                    i++;
+                }
+                stack.pop();
+            } else {
+                stack.push(s.charAt(i));
+                i++;
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        while (!stack.isEmpty()) {
+            stringBuilder.insert(0, stack.pop());
+        }
+        return stringBuilder.toString();
+    }
+
     /**
      * The entry point of application.
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
+        System.out.println(removeDuplicate("abbaca"));
     }
 }
